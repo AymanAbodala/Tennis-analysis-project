@@ -77,3 +77,52 @@ class PlayerTracker:
                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 0, 255), 2)
             output_video_frames.append(frame)  
         return output_video_frames
+
+    def choose_and_filter_players(self, court_keypoints, player_detections):
+        """
+        Filters the detected players based on the chosen players in the first frame.
+
+        Args:
+            court_keypoints (list): A list of keypoints of the court.
+            player_detections (list): A list of dictionaries, where each dictionary contains the track ID of a player
+              as the key and a list of bounding boxes as the value.
+
+        Returns:
+            list: A list of dictionaries, where each dictionary contains the track ID of a chosen player
+              as the key and a list of bounding boxes for that player as the value.
+        """
+        player_detections_first_frame = player_detections[0]
+        chosen_player = self.choose_players(court_keypoints, player_detections_first_frame)
+        filtered_player_detections = []
+        for player_dict in player_detections:
+            filtered_player_dict = {track_id: bbox for track_id, bbox in player_dict.items() if track_id in chosen_player}
+            filtered_player_detections.append(filtered_player_dict)
+        return filtered_player_detections
+    
+    def choose_players(self, court_keypoints, player_dict):
+        """
+        Chooses the two closest players to the court keypoints in the first frame.
+
+        Args:
+            court_keypoints (list): A list of keypoints of the court.
+            player_dict (dict): A dictionary containing the track ID of a player as the key and a list of bounding boxes as the value.
+
+        Returns:
+            list: A list of chosen track IDs of the players.
+        """
+        distances = []
+        for track_id, bbox in player_dict.items():
+            player_center = get_center_of_bbox(bbox)
+
+            min_distance = float('inf')
+            for i in range(0,len(court_keypoints),2):
+                court_keypoint = (court_keypoints[i], court_keypoints[i+1])
+                distance = measure_distance(player_center, court_keypoint)
+                if distance < min_distance:
+                    min_distance = distance
+            distances.append((track_id, min_distance))
+        # sorrt the distances in ascending order
+        distances.sort(key = lambda x: x[1])
+        # Choose the first 2 tracks
+        chosen_players = [distances[0][0], distances[1][0]]
+        return chosen_players
