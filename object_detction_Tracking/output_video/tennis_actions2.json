@@ -1,0 +1,201 @@
+{
+    "player_1": {
+        "action_counts": {
+            "Volley": 203,
+            "Serve": 11
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.7272727272727273,
+            "hit_distribution": {
+                "Volley": 0.9485981308411215,
+                "Serve": 0.0514018691588785
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Volley",
+                "start_frame": 0,
+                "distance_to_ball": 204.95927025419795,
+                "end_frame": 85
+            },
+            {
+                "action": "Serve",
+                "start_frame": 86,
+                "distance_to_ball": 81.75740185193554,
+                "end_frame": 88
+            },
+            {
+                "action": "Volley",
+                "start_frame": 89,
+                "distance_to_ball": 72.92532665427463,
+                "end_frame": 90
+            },
+            {
+                "action": "Serve",
+                "start_frame": 91,
+                "distance_to_ball": 66.80937687716077,
+                "end_frame": 92
+            },
+            {
+                "action": "Volley",
+                "start_frame": 93,
+                "distance_to_ball": 54.942753567528854
+            },
+            {
+                "action": "Serve",
+                "start_frame": 94,
+                "distance_to_ball": 50.61537752803077,
+                "end_frame": 96
+            },
+            {
+                "action": "Volley",
+                "start_frame": 97,
+                "distance_to_ball": 86.36047464295386
+            },
+            {
+                "action": "Serve",
+                "start_frame": 98,
+                "distance_to_ball": 105.93024116869995,
+                "end_frame": 99
+            },
+            {
+                "action": "Volley",
+                "start_frame": 100,
+                "distance_to_ball": 136.46903548737714,
+                "end_frame": 156
+            },
+            {
+                "action": "Serve",
+                "start_frame": 157,
+                "distance_to_ball": 172.03495762062838
+            },
+            {
+                "action": "Volley",
+                "start_frame": 158,
+                "distance_to_ball": 162.23526558947313,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 46
+        }
+    },
+    "player_2": {
+        "action_counts": {
+            "Volley": 206,
+            "Forehand": 6,
+            "Serve": 2
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 1.0,
+            "hit_distribution": {
+                "Volley": 0.9626168224299065,
+                "Forehand": 0.028037383177570093,
+                "Serve": 0.009345794392523364
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Volley",
+                "start_frame": 0,
+                "distance_to_ball": 204.72393606956837,
+                "end_frame": 9
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 10,
+                "distance_to_ball": 294.66455938910036
+            },
+            {
+                "action": "Volley",
+                "start_frame": 11,
+                "distance_to_ball": 275.5602204766884,
+                "end_frame": 22
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 23,
+                "distance_to_ball": 129.54396403481803
+            },
+            {
+                "action": "Volley",
+                "start_frame": 24,
+                "distance_to_ball": 121.35500446275465,
+                "end_frame": 29
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 30,
+                "distance_to_ball": 83.47763342364716,
+                "end_frame": 31
+            },
+            {
+                "action": "Volley",
+                "start_frame": 32,
+                "distance_to_ball": 76.5638006498866,
+                "end_frame": 37
+            },
+            {
+                "action": "Serve",
+                "start_frame": 38,
+                "distance_to_ball": 65.8960765743997
+            },
+            {
+                "action": "Volley",
+                "start_frame": 39,
+                "distance_to_ball": 65.50993992404142,
+                "end_frame": 47
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 48,
+                "distance_to_ball": 52.44647907518191
+            },
+            {
+                "action": "Volley",
+                "start_frame": 49,
+                "distance_to_ball": 47.77871485686369,
+                "end_frame": 64
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 65,
+                "distance_to_ball": 94.92094535229586
+            },
+            {
+                "action": "Volley",
+                "start_frame": 66,
+                "distance_to_ball": 102.62555052062095,
+                "end_frame": 135
+            },
+            {
+                "action": "Serve",
+                "start_frame": 136,
+                "distance_to_ball": 28.05077960357312
+            },
+            {
+                "action": "Volley",
+                "start_frame": 137,
+                "distance_to_ball": 41.066637876560435,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 64
+        }
+    },
+    "match_summary": {
+        "total_frames_processed": 214,
+        "distance_threshold_used": 100,
+        "player_with_most_actions": "1",
+        "most_common_action": "Volley"
+    }
+}

@@ -1,2 +1,7 @@
 /tennis
 *.pth
+*.mp4
+*.avi
+/__pycache__
+/output_video
+*.pt
