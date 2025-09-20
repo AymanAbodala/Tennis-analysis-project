@@ -8,9 +8,17 @@ import time
 import re
 import subprocess
 import sys
-from object_detection_Tracking import main_object_tracking
-from action_recognition import run_pipeline
-from processes_and_analysis import process_json_files
+import tempfile
+import cv2
+import numpy as np
+
+# Import your custom modules
+try:
+    from object_detection_Tracking import main_object_tracking
+    from action_recognition import run_pipeline
+    from processes_and_analysis import process_json_files
+except ImportError:
+    st.warning("Could not import custom modules. Please ensure they are in the correct path.")
 
 # Set page configuration
 st.set_page_config(
@@ -94,25 +102,53 @@ def get_recommendations_from_api(json_data):
         return {"error": f"Failed to connect to API: {str(e)}"}
 
 
-# Function to process video via FastAPI
-def process_video(video_file=None, youtube_url=None):
+# Function to process video using your custom modules
+def process_video_with_custom_modules(video_path, output_path=None):
+    """
+    Process video using the custom object tracking and action recognition modules
+    """
     try:
-        files = {}
-        data = {}
+        # Step 1: Run object detection and tracking
+        st.info("Running object detection and tracking...")
+        tracking_results = main_object_tracking(video_path, output_path)
 
-        if video_file:
-            files = {"file": (video_file.name, video_file.getvalue(), video_file.type)}
-        elif youtube_url:
-            data = {"youtube_url": youtube_url}
+        # Step 2: Run action recognition
+        st.info("Running action recognition...")
+        action_results = run_pipeline(video_path)
 
-        response = requests.post(FASTAPI_PROCESS_VIDEO, files=files, data=data)
+        # Step 3: Process the results and generate JSON files
+        st.info("Processing results and generating analysis...")
+        analysis_results = process_json_files(tracking_results, action_results)
 
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return {"error": f"API returned status code {response.status_code}: {response.text}"}
+        return analysis_results
+
     except Exception as e:
-        return {"error": f"Failed to connect to API: {str(e)}"}
+        st.error(f"Error processing video: {str(e)}")
+        return {"error": f"Failed to process video: {str(e)}"}
+
+
+# Function to download YouTube video
+def download_youtube_video(youtube_url):
+    try:
+        import yt_dlp
+
+        # Create a temporary file to save the video
+        temp_dir = tempfile.mkdtemp()
+        video_path = os.path.join(temp_dir, "downloaded_video.mp4")
+
+        ydl_opts = {
+            'format': 'best[height<=720]',  # Download HD quality (720p)
+            'outtmpl': video_path,
+            'quiet': True,
+        }
+
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([youtube_url])
+
+        return video_path
+    except Exception as e:
+        st.error(f"Error downloading YouTube video: {str(e)}")
+        return None
 
 
 # Function to validate YouTube URL
@@ -738,12 +774,28 @@ def main():
 
             if st.button("Analyze Video", key="analyze_video", use_container_width=True):
                 st.session_state.processing = True
-                with st.spinner("Processing video. This may take several minutes..."):
-                    # Reset video file pointer to beginning
-                    video_file.seek(0)
-                    results = process_video(video_file=video_file)
-                    st.session_state.results = results
-                    st.session_state.processing = False
+
+                # Create a temporary file to save the uploaded video
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as tmp_file:
+                    tmp_file.write(video_file.read())
+                    video_path = tmp_file.name
+
+                try:
+                    with st.spinner("Processing video. This may take several minutes..."):
+                        # Process the video using your custom modules
+                        results = process_video_with_custom_modules(video_path)
+                        st.session_state.results = results
+
+                        # Clean up the temporary file
+                        os.unlink(video_path)
+
+                except Exception as e:
+                    st.error(f"Error processing video: {str(e)}")
+                    # Clean up the temporary file even if there's an error
+                    if os.path.exists(video_path):
+                        os.unlink(video_path)
+
+                st.session_state.processing = False
 
     with tab2:
         st.markdown("""
@@ -763,10 +815,29 @@ def main():
 
                 if st.button("Analyze YouTube Video", key="analyze_youtube", use_container_width=True):
                     st.session_state.processing = True
-                    with st.spinner("Processing YouTube video. This may take several minutes..."):
-                        results = process_video(youtube_url=youtube_url)
-                        st.session_state.results = results
-                        st.session_state.processing = False
+                    try:
+                        with st.spinner("Downloading YouTube video..."):
+                            # Download the YouTube video
+                            video_path = download_youtube_video(youtube_url)
+
+                            if video_path:
+                                with st.spinner("Processing video. This may take several minutes..."):
+                                    # Process the video using your custom modules
+                                    results = process_video_with_custom_modules(video_path)
+                                    st.session_state.results = results
+
+                                    # Clean up the temporary file
+                                    if os.path.exists(video_path):
+                                        os.unlink(video_path)
+                                        temp_dir = os.path.dirname(video_path)
+                                        if os.path.exists(temp_dir):
+                                            os.rmdir(temp_dir)
+                            else:
+                                st.error("Failed to download YouTube video")
+                    except Exception as e:
+                        st.error(f"Error processing YouTube video: {str(e)}")
+
+                    st.session_state.processing = False
             else:
                 st.error("Please enter a valid YouTube URL")
 
