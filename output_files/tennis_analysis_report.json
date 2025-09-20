@@ -1,0 +1,67 @@
+{
+    "match_summary": {
+        "ball": {
+            "average_speed": 243.60739512484196,
+            "average_angle": 0.03862614289390385
+        },
+        "from_json2": {
+            "total_frames_processed": 214,
+            "player_with_most_actions": "p2",
+            "most_common_action": "Volley"
+        }
+    },
+    "players": {
+        "p1": {
+            "distance_covered": 762.3051835086627,
+            "average_speed": 106.86521264140131,
+            "zone_coverage": {
+                "back": 0.0,
+                "mid": 100.0,
+                "net": 0.0
+            },
+            "serve_accuracy": 1.0,
+            "hit_distribution": {
+                "Volley": 0.5454545454545454,
+                "Serve": 0.45454545454545453
+            },
+            "unforced_errors": 0,
+            "total_shots": 11,
+            "action_counts": {
+                "Volley": 6,
+                "Serve": 5
+            },
+            "total_actions": 11,
+            "detailed_stats": {
+                "total_frames": 214,
+                "active_frames": 0
+            }
+        },
+        "p2": {
+            "distance_covered": 504.1770677790744,
+            "average_speed": 70.67902819332818,
+            "zone_coverage": {
+                "back": 0.0,
+                "mid": 0.0,
+                "net": 100.0
+            },
+            "serve_accuracy": 1.0,
+            "hit_distribution": {
+                "Volley": 0.5333333333333333,
+                "Forehand": 0.3333333333333333,
+                "Serve": 0.13333333333333333
+            },
+            "unforced_errors": 0,
+            "total_shots": 15,
+            "action_counts": {
+                "Volley": 8,
+                "Forehand": 5,
+                "Serve": 2
+            },
+            "total_actions": 15,
+            "detailed_stats": {
+                "total_frames": 214,
+                "active_frames": 0
+            }
+        }
+    }
+}
