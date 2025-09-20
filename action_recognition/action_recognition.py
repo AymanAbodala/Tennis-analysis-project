@@ -1,3 +1,4 @@
+from datetime import datetime
 import cv2
 import numpy as np
 import torch
@@ -351,64 +352,63 @@ class TennisPipeline:
             return obj
 
 # ---------------- Run Example ---------------- #
-if __name__ == "__main__":
-    # Set up command line arguments
-    parser = argparse.ArgumentParser(description='Tennis Action Recognition Pipeline')
-    parser.add_argument('--video_path', type=str, required=True, help='Path to input video file')
-    parser.add_argument('--detection_json', type=str, required=True, help='Path to detection JSON file')
-    parser.add_argument('--output_json', type=str, default='tennis_actions2.json', help='Path to output JSON file')
-    parser.add_argument('--distance_threshold', type=float, default=100, help='Distance threshold for ball possession')
-    
-    args = parser.parse_args()
-    
+
+def run_pipeline(video_path, detection_json, 
+                 output_json=f"D:\\studying\\NTI training\\Tennis-analysis-project\\output_files\\tennis_actions{datetime.now().strftime('%Y%m%d%H%M%S')}.json",
+                   distance_threshold=100):
+    """
+    Run the Tennis Action Recognition Pipeline with provided paths and parameters.
+    Args:
+        video_path (str): Path to input video file
+        detection_json (str): Path to detection JSON file
+        output_json (str): Path to output JSON file
+        distance_threshold (float): Distance threshold for ball possession
+    """
     # Load detection data from JSON file
     try:
-        with open(args.detection_json, 'r') as f:
+        with open(detection_json, 'r') as f:
             detection_data = json.load(f)
-        print(f"[INFO] Successfully loaded detection data from {args.detection_json}")
-        
-        # Debug: print structure info
+        print(f"[INFO] Successfully loaded detection data from {detection_json}")
         print(f"Player detection frames: {len(detection_data.get('player_detections', []))}")
         print(f"Ball detection frames: {len(detection_data.get('ball_detections', []))}")
         if detection_data.get('player_detections'):
             print(f"Player IDs detected: {list(detection_data['player_detections'][0].keys())}")
-            
     except FileNotFoundError:
-        print(f"[ERROR] Detection JSON file not found at {args.detection_json}")
-        exit(1)
+        print(f"[ERROR] Detection JSON file not found at {detection_json}")
+        return
     except json.JSONDecodeError:
-        print(f"[ERROR] Invalid JSON format in {args.detection_json}")
-        exit(1)
-    
+        print(f"[ERROR] Invalid JSON format in {detection_json}")
+        return
+
     # Open video file
-    cap = cv2.VideoCapture(args.video_path)
+    cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        print(f"[ERROR] Could not open video file {args.video_path}")
-        exit(1)
-        
+        print(f"[ERROR] Could not open video file {video_path}")
+        return
+
     # Initialize models and pipeline
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"[INFO] Using device: {device}")
     action_model = ActionModel(num_classes=5, device=device)
-    pipeline = TennisPipeline(action_model, distance_threshold=args.distance_threshold)
+    pipeline = TennisPipeline(action_model, distance_threshold=distance_threshold)
 
     # Process each frame
     frame_id = 0
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     print(f"[INFO] Processing {total_frames} frames...")
-    
+
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
 
         pipeline.process_detections(frame, detection_data, frame_id)
-        
+
         if frame_id % 100 == 0:
             print(f"[INFO] Processed frame {frame_id}/{total_frames}")
-            
+
         frame_id += 1
 
     cap.release()
-    pipeline.export_results(args.output_json)
-    print(f"[INFO] Processing complete. Results saved to {args.output_json}")
+    pipeline.export_results(output_json)
+    print(f"[INFO] Processing complete. Results saved to {output_json}")

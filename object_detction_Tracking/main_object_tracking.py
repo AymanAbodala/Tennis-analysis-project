@@ -1,12 +1,15 @@
-from utils import (read_video, save_video)
+from utils import (read_video,convert_to_mp4, save_video)
 from trackers import PlayerTracker , BallTracker
 from court_points_detector import CourtPointsDetector
 import cv2
 import json
+import numpy as np
 
-def main_object_tracking():
+def main_object_tracking(input_video_path=None , output_video_path=None):
     #read video
-    input_video_path = r'D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\WhatsApp Video 2025-09-19 at 2.37.29 AM.mp4' # still empty 
+    input_video_path = input_video_path 
+    if 'youtube.com' in input_video_path or 'youtu.be' in input_video_path:
+        input_video_path = convert_to_mp4(input_video_path)
     video_frames = read_video(input_video_path)
 
     # detect players and Ball
@@ -16,14 +19,14 @@ def main_object_tracking():
     player_detections = player_tracker.detect_frames(video_frames)
     ball_detections = ball_tracker.detect_frames(video_frames)
 
-    ball_detections = ball_tracker.interpolate_ball_positions(ball_detections) # @@
+    ball_detections = ball_tracker.interpolate_ball_positions(ball_detections)
 
     # Court Line Detector model
     court_model_path = r"D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\models\keypoints_model.pth"
     court_line_detector = CourtPointsDetector(court_model_path)
     court_keypoints = court_line_detector.predict(video_frames[0])
 
-    # choose player@@
+    # choose player
     player_detections = player_tracker.choose_and_filter_players(court_keypoints ,player_detections)
 
     # draw bboxes
@@ -37,14 +40,18 @@ def main_object_tracking():
     for i, frame in enumerate(output_video_frames):
         cv2.putText(frame, f"Frame: {i}", (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-    save_video(output_video_frames,r"D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\output_video\output_video3.avi")
+    video_path = f"D:\\studying\\NTI training\\Tennis-analysis-project\\object_detction_Tracking\\output_video\\output_video{np.random.randint(0,1000)}.avi"
+    save_video(output_video_frames,video_path)
 
-    return {"player_detections": player_detections,
+    results = {"player_detections": player_detections,
             "ball_detections": ball_detections
             }
-
-
-if __name__ == "__main__":
-    results = main_object_tracking()
-    with open(r"D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\output_video\results.json", "w") as f:
+    json_path = f"D:\\studying\\NTI training\\Tennis-analysis-project\\output_files\\{np.random.randint(0,1000)}.json"
+    with open(json_path, "w") as f:
         json.dump(results,f)
+
+    return json_path , video_path
+
+
+
+    
