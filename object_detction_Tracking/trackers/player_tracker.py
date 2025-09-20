@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 import sys
 sys.path.append('../')
-from utils import measure_distance , get_center_of_bbox
+from object_detction_Tracking.my_utils import measure_distance , get_center_of_bbox
 
 class PlayerTracker:
     def __init__(self , model_path):

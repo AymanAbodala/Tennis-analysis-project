@@ -13,10 +13,13 @@ import cv2
 import numpy as np
 from datetime import datetime
 import torchvision
+import ultralytics
+
+print(sys.executable)
+
 
 # Add the path to import modules from other folders
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from object_detction_Tracking.utils import *
 
 
 
@@ -756,26 +759,26 @@ def main():
 
                 try:
                     with st.spinner("Processing video. This may take several minutes..."):
-                        # Run object detection and tracking
+                        # Step 1: Object detection and tracking
                         st.info("Running object detection and tracking...")
-                        json_path, processed_video_path = main_object_tracking(video_path)
+                        detection_json_path, processed_video_path = main_object_tracking(video_path)
 
-                        # Load the detection results
-                        detection_results = load_json_data(json_path)
+                        # Step 2: Action recognition
+                        st.info("Running action recognition...")
+                        action_json_path = run_pipeline(video_path, detection_json_path)
 
-                        if detection_results is not None:
-                            st.session_state.detection_results = detection_results
-                            st.session_state.processed_video_path = processed_video_path
+                        # Step 3: Process and manage features (final report)
+                        st.info("Generating final report...")
+                        final_report_json_path = process_json_files(detection_json_path, action_json_path)
 
-                            # Then run the action recognition pipeline
-                            st.info("Running action recognition...")
-                            results = run_pipeline(video_path, detection_results)
-                            st.session_state.results = results
+                        # Load the final report JSON
+                        final_report_data = load_json_data(final_report_json_path)
+                        st.session_state.analysis_data = final_report_data
 
-                            # Show the processed video with detections
-                            if processed_video_path and os.path.exists(processed_video_path):
-                                st.info("Video with object detection results:")
-                                st.video(processed_video_path)
+                        # Show the processed video with detections
+                        if processed_video_path and os.path.exists(processed_video_path):
+                            st.info("Video with object detection results:")
+                            st.video(processed_video_path)
 
                         # Clean up the temporary file
                         os.unlink(video_path)
@@ -811,26 +814,26 @@ def main():
                             # Download the YouTube video
                             video_path = download_youtube_video(youtube_url)
                             if video_path:
-                                # Run object detection and tracking
+                                # Step 1: Object detection and tracking
                                 st.info("Running object detection and tracking...")
-                                json_path, processed_video_path = main_object_tracking(video_path)
+                                detection_json_path, processed_video_path = main_object_tracking(video_path)
 
-                                # Load the detection results
-                                detection_results = load_json_data(json_path)
+                                # Step 2: Action recognition
+                                st.info("Running action recognition...")
+                                action_json_path = run_pipeline(video_path, detection_json_path)
 
-                                if detection_results is not None:
-                                    st.session_state.detection_results = detection_results
-                                    st.session_state.processed_video_path = processed_video_path
+                                # Step 3: Process and manage features (final report)
+                                st.info("Generating final report...")
+                                final_report_json_path = process_json_files(detection_json_path, action_json_path)
 
-                                    # Then run the action recognition pipeline
-                                    st.info("Running action recognition...")
-                                    results = run_pipeline(video_path, detection_results)
-                                    st.session_state.results = results
+                                # Load the final report JSON
+                                final_report_data = load_json_data(final_report_json_path)
+                                st.session_state.analysis_data = final_report_data
 
-                                    # Show the processed video with detections
-                                    if processed_video_path and os.path.exists(processed_video_path):
-                                        st.info("Video with object detection results:")
-                                        st.video(processed_video_path)
+                                # Show the processed video with detections
+                                if processed_video_path and os.path.exists(processed_video_path):
+                                    st.info("Video with object detection results:")
+                                    st.video(processed_video_path)
 
                                 # Clean up the downloaded video
                                 os.unlink(video_path)

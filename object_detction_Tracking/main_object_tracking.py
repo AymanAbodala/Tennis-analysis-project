@@ -1,6 +1,6 @@
-from utils import (read_video,convert_to_mp4, save_video)
-from trackers import PlayerTracker , BallTracker
-from court_points_detector import CourtPointsDetector
+from object_detction_Tracking.my_utils import (read_video,convert_to_mp4, save_video)
+from object_detction_Tracking.trackers import PlayerTracker , BallTracker
+from object_detction_Tracking.court_points_detector import CourtPointsDetector
 import cv2
 import json
 import numpy as np
