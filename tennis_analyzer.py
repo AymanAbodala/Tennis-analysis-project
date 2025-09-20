@@ -11,14 +11,38 @@ import sys
 import tempfile
 import cv2
 import numpy as np
+from datetime import datetime
+import torchvision
+
+# Add the path to import modules from other folders
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from object_detction_Tracking.utils import *
+
+
 
 # Import your custom modules
 try:
-    from object_detection_Tracking import main_object_tracking
-    from action_recognition import run_pipeline
-    from processes_and_analysis import process_json_files
-except ImportError:
-    st.warning("Could not import custom modules. Please ensure they are in the correct path.")
+    from action_recognition.action_recognition import run_pipeline
+except ImportError as e:
+    st.error(f"Failed to import action recognition module: {str(e)}")
+
+
+    # Create a dummy function for fallback
+    def run_pipeline(video_path, detection_results):
+        return {"error": "Action recognition module not available"}
+
+try:
+    # Import the object detection module
+    from object_detction_Tracking.main_object_tracking import main_object_tracking
+except ImportError as e:
+    st.error(f"Failed to import object detection module: {str(e)}")
+
+
+    # Create a dummy function for fallback
+    def main_object_tracking(input_video_path):
+        return "dummy_json_path.json", "dummy_video_path.avi"
+
+from processes_and_analysis.get_final_report import process_json_files
 
 # Set page configuration
 st.set_page_config(
@@ -28,21 +52,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# FastAPI endpoints
+# FastAPI endpoints (for JSON analysis only)
 FASTAPI_URL = "http://localhost:8000/recommendations"  # For JSON analysis
-FASTAPI_PROCESS_VIDEO = "http://localhost:8000/process-video"  # For video processing
-
-
-# Install required dependencies from the GitHub repository
-def install_dependencies():
-    try:
-        # Install requirements from the tennis-analysis project
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r",
-                               "https://raw.githubusercontent.com/AymanAbodala/Tennis-analysis-project/main/requirements.txt"])
-        st.success("Dependencies installed successfully!")
-    except subprocess.CalledProcessError as e:
-        st.warning(f"Could not install dependencies automatically: {e}")
-        st.info("Please manually install the requirements from the GitHub repository")
 
 
 # Function to convert image to base64
@@ -102,31 +113,6 @@ def get_recommendations_from_api(json_data):
         return {"error": f"Failed to connect to API: {str(e)}"}
 
 
-# Function to process video using your custom modules
-def process_video_with_custom_modules(video_path, output_path=None):
-    """
-    Process video using the custom object tracking and action recognition modules
-    """
-    try:
-        # Step 1: Run object detection and tracking
-        st.info("Running object detection and tracking...")
-        tracking_results = main_object_tracking(video_path, output_path)
-
-        # Step 2: Run action recognition
-        st.info("Running action recognition...")
-        action_results = run_pipeline(video_path)
-
-        # Step 3: Process the results and generate JSON files
-        st.info("Processing results and generating analysis...")
-        analysis_results = process_json_files(tracking_results, action_results)
-
-        return analysis_results
-
-    except Exception as e:
-        st.error(f"Error processing video: {str(e)}")
-        return {"error": f"Failed to process video: {str(e)}"}
-
-
 # Function to download YouTube video
 def download_youtube_video(youtube_url):
     try:
@@ -162,21 +148,14 @@ def is_valid_youtube_url(url):
     return bool(match)
 
 
-# Function to clone and set up the tennis analysis project
-def setup_tennis_analysis():
+# Function to load JSON data from file
+def load_json_data(json_path):
     try:
-        # Clone the repository if it doesn't exist
-        if not os.path.exists("Tennis-analysis-project"):
-            subprocess.check_call(["git", "clone", "https://github.com/AymanAbodala/Tennis-analysis-project.git"])
-
-        # Add the project to Python path
-        sys.path.append("Tennis-analysis-project")
-
-        st.success("Tennis analysis project setup successfully!")
-        return True
+        with open(json_path, 'r') as f:
+            return json.load(f)
     except Exception as e:
-        st.error(f"Failed to setup tennis analysis project: {e}")
-        return False
+        st.error(f"Error loading JSON data: {str(e)}")
+        return None
 
 
 # Custom CSS
@@ -649,13 +628,6 @@ def main():
     add_bg_image_local()
     local_css()
 
-    # Install dependencies and setup project
-    if st.sidebar.button("Install Dependencies"):
-        install_dependencies()
-
-    if st.sidebar.button("Setup Tennis Analysis Project"):
-        setup_tennis_analysis()
-
     # Logos - using local images if available
     nti_logo_html = ""
     mcit_logo_html = ""
@@ -752,8 +724,10 @@ def main():
         st.session_state.processing = False
     if 'analysis_data' not in st.session_state:
         st.session_state.analysis_data = None
-    if 'active_tab' not in st.session_state:
-        st.session_state.active_tab = 'video'
+    if 'processed_video_path' not in st.session_state:
+        st.session_state.processed_video_path = None
+    if 'detection_results' not in st.session_state:
+        st.session_state.detection_results = None
 
     # Tabs for different input methods
     tab1, tab2, tab3 = st.tabs(["Upload Video", "YouTube Link", "JSON Analysis"])
@@ -782,9 +756,26 @@ def main():
 
                 try:
                     with st.spinner("Processing video. This may take several minutes..."):
-                        # Process the video using your custom modules
-                        results = process_video_with_custom_modules(video_path)
-                        st.session_state.results = results
+                        # Run object detection and tracking
+                        st.info("Running object detection and tracking...")
+                        json_path, processed_video_path = main_object_tracking(video_path)
+
+                        # Load the detection results
+                        detection_results = load_json_data(json_path)
+
+                        if detection_results is not None:
+                            st.session_state.detection_results = detection_results
+                            st.session_state.processed_video_path = processed_video_path
+
+                            # Then run the action recognition pipeline
+                            st.info("Running action recognition...")
+                            results = run_pipeline(video_path, detection_results)
+                            st.session_state.results = results
+
+                            # Show the processed video with detections
+                            if processed_video_path and os.path.exists(processed_video_path):
+                                st.info("Video with object detection results:")
+                                st.video(processed_video_path)
 
                         # Clean up the temporary file
                         os.unlink(video_path)
@@ -816,24 +807,35 @@ def main():
                 if st.button("Analyze YouTube Video", key="analyze_youtube", use_container_width=True):
                     st.session_state.processing = True
                     try:
-                        with st.spinner("Downloading YouTube video..."):
+                        with st.spinner("Processing YouTube video. This may take several minutes..."):
                             # Download the YouTube video
                             video_path = download_youtube_video(youtube_url)
-
                             if video_path:
-                                with st.spinner("Processing video. This may take several minutes..."):
-                                    # Process the video using your custom modules
-                                    results = process_video_with_custom_modules(video_path)
+                                # Run object detection and tracking
+                                st.info("Running object detection and tracking...")
+                                json_path, processed_video_path = main_object_tracking(video_path)
+
+                                # Load the detection results
+                                detection_results = load_json_data(json_path)
+
+                                if detection_results is not None:
+                                    st.session_state.detection_results = detection_results
+                                    st.session_state.processed_video_path = processed_video_path
+
+                                    # Then run the action recognition pipeline
+                                    st.info("Running action recognition...")
+                                    results = run_pipeline(video_path, detection_results)
                                     st.session_state.results = results
 
-                                    # Clean up the temporary file
-                                    if os.path.exists(video_path):
-                                        os.unlink(video_path)
-                                        temp_dir = os.path.dirname(video_path)
-                                        if os.path.exists(temp_dir):
-                                            os.rmdir(temp_dir)
-                            else:
-                                st.error("Failed to download YouTube video")
+                                    # Show the processed video with detections
+                                    if processed_video_path and os.path.exists(processed_video_path):
+                                        st.info("Video with object detection results:")
+                                        st.video(processed_video_path)
+
+                                # Clean up the downloaded video
+                                os.unlink(video_path)
+                                os.rmdir(os.path.dirname(video_path))
+
                     except Exception as e:
                         st.error(f"Error processing YouTube video: {str(e)}")
 
@@ -911,11 +913,7 @@ def main():
                 st.markdown(f"""
                 <div class="stats-container">
                     <h4 class="stats-title">Ball Statistics</h4>
-                    <div class="stat-item">
-                        <span class="stat-label">Average Speed:</span>
-                        <span class="stat-value">{ball_stats.get('average_speed', 0):.2f} m/s</span>
-                    </div>
-                    <div class="stat-item">
+                                        <div class="stat-item">
                         <span class="stat-label">Average Angle:</span>
                         <span class="stat-value">{ball_stats.get('average_angle', 0):.2f}°</span>
                     </div>
@@ -971,8 +969,8 @@ def main():
     else:
         ibrahim_img_html = '<div class="member-img">👤</div>'
 
-    if os.path.exists("ayman_abdallah.jpg"):
-        ayman_encoded = get_image_base64("ayman_abdallah.jpg")
+    if os.path.exists("ayman_abodala.jpg"):
+        ayman_encoded = get_image_base64("ayman_abodala.jpg")
         ayman_img_html = f'<img src="data:image/jpg;base64,{ayman_encoded}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px; border: 3px solid #fdbb2d;">'
     else:
         ayman_img_html = '<div class="member-img">👤</div>'
@@ -1013,7 +1011,7 @@ def main():
         st.markdown(f"""
         <div class="member">
             {ayman_img_html}
-            <h3 class="member-name">Ayman Abdallah</h3>
+            <h3 class="member-name">Ayman Abodala</h3>
             <p class="member-role">Developer</p>
             <p>Object Detection</p>
         </div>
