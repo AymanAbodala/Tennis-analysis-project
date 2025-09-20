@@ -5,7 +5,7 @@ import cv2
 import json
 import numpy as np
 
-def main_object_tracking(input_video_path=None , output_video_path=None):
+def main_object_tracking(input_video_path=None):
     #read video
     input_video_path = input_video_path 
     if 'youtube.com' in input_video_path or 'youtu.be' in input_video_path:

@@ -412,3 +412,4 @@ def run_pipeline(video_path, detection_json,
     cap.release()
     pipeline.export_results(output_json)
     print(f"[INFO] Processing complete. Results saved to {output_json}")
+    return output_json
