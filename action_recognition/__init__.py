@@ -1,0 +1,1 @@
+from action_recognition.action_recognition import run_pipeline
