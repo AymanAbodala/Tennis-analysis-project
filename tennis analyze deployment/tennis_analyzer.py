@@ -8,6 +8,9 @@ import time
 import re
 import subprocess
 import sys
+from object_detection_Tracking import main_object_tracking
+from action_recognition import run_pipeline
+from processes_and_analysis import process_json_files
 
 # Set page configuration
 st.set_page_config(
@@ -98,7 +101,7 @@ def process_video(video_file=None, youtube_url=None):
         data = {}
 
         if video_file:
-            files = {"file": (video_file.name, video_file.read(), video_file.type)}
+            files = {"file": (video_file.name, video_file.getvalue(), video_file.type)}
         elif youtube_url:
             data = {"youtube_url": youtube_url}
 
@@ -646,13 +649,16 @@ def main():
 
     # Info icon with JavaScript for modal
     st.markdown("""
-    <div class="info-icon" onclick="showModal()">
+    <div class="info-icon" id="infoIcon">
         ℹ
     </div>
 
     <div id="infoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1001; align-items: center; justify-content: center;">
     </div>
+    """, unsafe_allow_html=True)
 
+    # Add JavaScript for modal functionality
+    st.components.v1.html("""
     <script>
     function showModal() {
         document.getElementById("infoModal").style.display = "flex";
@@ -681,15 +687,18 @@ def main():
         document.getElementById("infoModal").style.display = "none";
     }
 
+    // Add event listeners
+    document.getElementById("infoIcon").addEventListener("click", showModal);
+
     // Close modal when clicking outside content
-    window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         const modal = document.getElementById("infoModal");
         if (event.target === modal) {
             closeModal();
         }
-    }
+    });
     </script>
-    """, unsafe_allow_html=True)
+    """, height=0)
 
     # Main content
     st.markdown("""
@@ -700,38 +709,6 @@ def main():
         </header>
     """, unsafe_allow_html=True)
 
-    # Tabs for different input methods
-    st.markdown("""
-    <div class="tabs">
-        <div class="tab active" onclick="changeTab('video')">Upload Video</div>
-        <div class="tab" onclick="changeTab('youtube')">YouTube Link</div>
-        <div class="tab" onclick="changeTab('json')">JSON Analysis</div>
-    </div>
-
-    <script>
-    function changeTab(tabName) {
-        // Hide all content
-        document.querySelectorAll('.tab-content').forEach(el => {
-            el.style.display = 'none';
-        });
-
-        // Show selected content
-        document.getElementById(tabName + '-tab').style.display = 'block';
-
-        // Update active tab
-        document.querySelectorAll('.tab').forEach(el => {
-            el.classList.remove('active');
-        });
-        event.currentTarget.classList.add('active');
-    }
-
-    // Initialize with video tab visible
-    window.onload = function() {
-        document.getElementById('video-tab').style.display = 'block';
-    }
-    </script>
-    """, unsafe_allow_html=True)
-
     # Initialize session state for results
     if 'results' not in st.session_state:
         st.session_state.results = None
@@ -739,89 +716,86 @@ def main():
         st.session_state.processing = False
     if 'analysis_data' not in st.session_state:
         st.session_state.analysis_data = None
+    if 'active_tab' not in st.session_state:
+        st.session_state.active_tab = 'video'
 
-    # Video Upload Tab
-    st.markdown('<div class="tab-content" id="video-tab" style="display: none;">', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="upload-section">
-        <div class="upload-icon">🎬</div>
-        <p class="upload-text">Upload your tennis match video</p>
-    </div>
-    """, unsafe_allow_html=True)
+    # Tabs for different input methods
+    tab1, tab2, tab3 = st.tabs(["Upload Video", "YouTube Link", "JSON Analysis"])
 
-    video_file = st.file_uploader("Upload Video", type=["mp4", "mov", "avi", "mkv"], key="video_uploader",
-                                  label_visibility="collapsed")
+    with tab1:
+        st.markdown("""
+        <div class="upload-section">
+            <div class="upload-icon">🎬</div>
+            <p class="upload-text">Upload your tennis match video</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    if video_file is not None:
-        st.video(video_file)
+        video_file = st.file_uploader("Upload Video", type=["mp4", "mov", "avi", "mkv"], key="video_uploader",
+                                      label_visibility="collapsed")
 
-        if st.button("Analyze Video", key="analyze_video", use_container_width=True):
-            st.session_state.processing = True
-            with st.spinner("Processing video. This may take several minutes..."):
-                # Reset video file pointer to beginning
-                video_file.seek(0)
-                results = process_video(video_file=video_file)
-                st.session_state.results = results
-                st.session_state.processing = False
+        if video_file is not None:
+            st.video(video_file)
 
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # YouTube Link Tab
-    st.markdown('<div class="tab-content" id="youtube-tab" style="display: none;">', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="external-link-section">
-        <div class="upload-icon">📺</div>
-        <p class="upload-text">Enter YouTube URL of tennis match</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    youtube_url = st.text_input("YouTube URL", "", key="youtube_url", placeholder="https://www.youtube.com/watch?v=...",
-                                label_visibility="collapsed")
-
-    if youtube_url:
-        if is_valid_youtube_url(youtube_url):
-            st.success("Valid YouTube URL detected!")
-
-            if st.button("Analyze YouTube Video", key="analyze_youtube", use_container_width=True):
+            if st.button("Analyze Video", key="analyze_video", use_container_width=True):
                 st.session_state.processing = True
-                with st.spinner("Processing YouTube video. This may take several minutes..."):
-                    results = process_video(youtube_url=youtube_url)
+                with st.spinner("Processing video. This may take several minutes..."):
+                    # Reset video file pointer to beginning
+                    video_file.seek(0)
+                    results = process_video(video_file=video_file)
                     st.session_state.results = results
                     st.session_state.processing = False
-        else:
-            st.error("Please enter a valid YouTube URL")
 
-    st.markdown('</div>', unsafe_allow_html=True)
+    with tab2:
+        st.markdown("""
+        <div class="external-link-section">
+            <div class="upload-icon">📺</div>
+            <p class="upload-text">Enter YouTube URL of tennis match</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    # JSON Analysis Tab
-    st.markdown('<div class="tab-content" id="json-tab" style="display: none;">', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="upload-section">
-        <div class="upload-icon">📁</div>
-        <p class="upload-text">Upload your tennis features JSON file</p>
-    </div>
-    """, unsafe_allow_html=True)
+        youtube_url = st.text_input("YouTube URL", "", key="youtube_url",
+                                    placeholder="https://www.youtube.com/watch?v=...",
+                                    label_visibility="collapsed")
 
-    json_file = st.file_uploader("Upload JSON", type=["json"], key="json_uploader", label_visibility="collapsed")
+        if youtube_url:
+            if is_valid_youtube_url(youtube_url):
+                st.success("Valid YouTube URL detected!")
 
-    if json_file is not None:
-        try:
-            # Read and parse the JSON file
-            json_data = json.load(json_file)
-            st.session_state.analysis_data = json_data
-            st.success("JSON file uploaded successfully!")
+                if st.button("Analyze YouTube Video", key="analyze_youtube", use_container_width=True):
+                    st.session_state.processing = True
+                    with st.spinner("Processing YouTube video. This may take several minutes..."):
+                        results = process_video(youtube_url=youtube_url)
+                        st.session_state.results = results
+                        st.session_state.processing = False
+            else:
+                st.error("Please enter a valid YouTube URL")
 
-            # Display a button to analyze
-            if st.button("Analyze Performance", key="analyze_json", use_container_width=True):
-                with st.spinner("Analyzing player performance..."):
-                    # Send to FastAPI endpoint
-                    results = get_recommendations_from_api(json_data)
-                    st.session_state.results = results
+    with tab3:
+        st.markdown("""
+        <div class="upload-section">
+            <div class="upload-icon">📁</div>
+            <p class="upload-text">Upload your tennis features JSON file</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-        except json.JSONDecodeError:
-            st.error("Invalid JSON file. Please upload a valid JSON file.")
+        json_file = st.file_uploader("Upload JSON", type=["json"], key="json_uploader", label_visibility="collapsed")
 
-    st.markdown('</div>', unsafe_allow_html=True)
+        if json_file is not None:
+            try:
+                # Read and parse the JSON file
+                json_data = json.load(json_file)
+                st.session_state.analysis_data = json_data
+                st.success("JSON file uploaded successfully!")
+
+                # Display a button to analyze
+                if st.button("Analyze Performance", key="analyze_json", use_container_width=True):
+                    with st.spinner("Analyzing player performance..."):
+                        # Send to FastAPI endpoint
+                        results = get_recommendations_from_api(json_data)
+                        st.session_state.results = results
+
+            except json.JSONDecodeError:
+                st.error("Invalid JSON file. Please upload a valid JSON file.")
 
     # Display results if available
     if st.session_state.results:
@@ -863,20 +837,19 @@ def main():
             match_summary = st.session_state.analysis_data["match_summary"]
             if "ball" in match_summary:
                 ball_stats = match_summary["ball"]
-                st.markdown("""
+                st.markdown(f"""
                 <div class="stats-container">
                     <h4 class="stats-title">Ball Statistics</h4>
                     <div class="stat-item">
                         <span class="stat-label">Average Speed:</span>
-                        <span class="stat-value">{:.2f} m/s</span>
+                        <span class="stat-value">{ball_stats.get('average_speed', 0):.2f} m/s</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Average Angle:</span>
-                        <span class="stat-value">{:.2f}°</span>
+                        <span class="stat-value">{ball_stats.get('average_angle', 0):.2f}°</span>
                     </div>
                 </div>
-                """.format(ball_stats.get("average_speed", 0), ball_stats.get("average_angle", 0)),
-                            unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 
         # Display player statistics
         if "players" in st.session_state.analysis_data:
