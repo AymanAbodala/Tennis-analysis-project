@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Match Analyzer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-image: url(Pickleball-Main.jpg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            position: relative;
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 100;
+        }
+        
+        .logo {
+            width: 140px;
+            height: 70px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: #1a2a6c;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .info-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fdbb2d;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 100px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .upload-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .upload-section:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+        
+        .upload-text {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .upload-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .smiley {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* External Link Section */
+        .external-link-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .link-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a2a6c;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .link-input::placeholder {
+            color: #666;
+        }
+        
+        .link-btn {
+            background: linear-gradient(to right, #00b4d8, #0077b6);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+        }
+        
+        .link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .results-section {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        .results-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+        
+        .sponsor {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00b4d8;
+            margin-top: 30px;
+        }
+        
+        .team-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fdbb2d;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+        
+        .member {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .member:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .member-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #fdbb2d;
+            background: #1a2a6c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fdbb2d;
+            overflow: hidden;
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #fdbb2d;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                width: 110px;
+                height: 55px;
+            }
+            
+            .logo span {
+                font-size: 1rem;
+            }
+            
+            .upload-section {
+                padding: 30px 20px;
+            }
+            
+            .upload-text {
+                font-size: 1.3rem;
+            }
+            
+            .external-link-section {
+                padding: 20px 15px;
+            }
+            
+            .link-input {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .team-members {
+                gap: 15px;
+            }
+            
+            .member {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo" id="NTI">
+            <img src="NTI-logo.png" alt="NTI Logo" width="140" height="70">
+        </div>
+        <div class="logo" id="MCIT">
+            <img src="MCIT-logo.png" alt="MCIT Logo" width="140" height="70">
+        </div>
+    </div>
+    
+    <div class="info-icon">
+        <i class="fas fa-info"></i>
+    </div>
+    
+    <div class="info-modal" id="infoModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>About Tennis Match Analyzer</h2>
+            <p>This project is an advanced AI-powered tennis analysis system that provides players and coaches with detailed insights into match performance.</p>
+            <br>
+            <h3>Key Features:</h3>
+            <ul>
+                <li>Serve speed and accuracy tracking</li>
+                <li>Shot placement analysis</li>
+                <li>Movement and court coverage metrics</li>
+                <li>Stroke technique evaluation</li>
+                <li>Performance trends over time</li>
+            </ul>
+            <br>
+            <p>The system uses computer vision and machine learning to analyze match footage and generate actionable insights for players of all levels.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Tennis Match Analyzer</h1>
+            <p class="subtitle">Advanced AI-powered tennis performance analysis</p>
+        </header>
+        
+        <main>
+            <div class="upload-section">
+                <i class="upload-icon fas fa-cloud-upload-alt"></i>
+                <p class="upload-text">Upload or Drag here your file</p>
+                <button class="upload-btn">Click here to upload your video</button>
+                <span class="smiley">😊</span>
+            </div>
+            
+            <!-- External Link Section -->
+            <div class="external-link-section">
+                <h3>Or provide a video URL</h3>
+                <input type="url" class="link-input" placeholder="Paste video link here (YouTube, etc.)">
+                <br>
+                <button class="link-btn">Analyze from URL</button>
+            </div>
+            
+            <div class="results-section">
+                <h2 class="results-title">The Results</h2>
+                <!-- <p class="sponsor">BARCLAYS</p> -->
+                <!-- Results content would be dynamically inserted here -->
+            </div>
+            
+            <div class="team-section">
+                <h2 class="section-title">Our Team</h2>
+                <div class="team-members">
+                    <div class="member">
+                        <div class="member-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="member-name">Ahmed Mohammed</h3>
+                        <p class="member-role">Developer</p>
+                        <p>Tracking</p>
+                    </div>
+                    
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="Ibrahim.jpg" alt="Ibrahim Yasser">
+                        </div>
+                        <h3 class="member-name">Ibrahim Yasser</h3>
+                        <p class="member-role">Developer</p>
+                        <p>Deployment</p>
+                    </div>
+                    
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="Ayman Abdallah.jpg" alt="Ayman Abdallah">
+                        </div>
+                        <h3 class="member-name">Ayman Abdallah</h3>
+                        <p class="member-role">Developer</p>
+                        <p>Object Detection</p>
+                    </div>
+                    
+                    <div class="member">
+                        <div class="member-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="member-name">A'laa Omar</h3>
+                        <p class="member-role">Developer</p>
+                        <p>Data Processing</p>
+                    </div>
+                    
+                    <div class="member">
+                        <div class="member-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="member-name">A'laa Hegazy</h3>
+                        <p class="member-role">Developer</p>
+                        <p>Pose Estimation</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2025 Tennis Match Analyzer | Privacy Policy | Terms of Service</p>
+        </footer>
+    </div>
+
+    <script>
+        // Info modal functionality
+        const infoIcon = document.querySelector('.info-icon');
+        const infoModal = document.getElementById('infoModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        infoIcon.addEventListener('click', () => {
+            infoModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            infoModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside content
+        window.addEventListener('click', (e) => {
+            if (e.target === infoModal) {
+                infoModal.style.display = 'none';
+            }
+        });
+        
+        // Simple drag and drop functionality
+        const uploadSection = document.querySelector('.upload-section');
+        
+        uploadSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadSection.style.background = 'rgba(255, 255, 255, 0.2)';
+        });
+        
+        uploadSection.addEventListener('dragleave', () => {
+            uploadSection.style.background = 'rgba(255, 255, 255, 0.1)';
+        });
+        
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadSection.style.background = 'rgba(255, 255, 255, 0.1)';
+            alert('Video uploaded successfully! Analysis in progress...');
+        });
+        
+        document.querySelector('.upload-btn').addEventListener('click', () => {
+            alert('Please select a tennis match video to analyze');
+        });
+        
+        // External link functionality
+        document.querySelector('.link-btn').addEventListener('click', () => {
+            const url = document.querySelector('.link-input').value;
+            if (url) {
+                alert(`Analyzing video from: ${url}`);
+            } else {
+                alert('Please enter a valid video URL');
+            }
+        });
+    </script>
+</body>
+</html>

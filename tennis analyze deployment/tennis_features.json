@@ -1,0 +1,38 @@
+{
+    "players": {
+        "p1": {
+            "distance_covered": 16341.308819090176,
+            "average_speed": 2301.5927914212302,
+            "serve_accuracy": null,
+            "hit_distribution": {},
+            "unforced_errors": null,
+            "zone_coverage": {
+                "back": 58.87850467289719,
+                "mid": 22.897196261682243,
+                "net": 18.22429906542056
+            }
+
+        },
+        "p2": {
+            "distance_covered": 6093.044855482349,
+            "average_speed": 858.1753317580366,
+            "serve_accuracy": null, 
+            "hit_distribution": {}, 
+            "unforced_errors": null, 
+            "zone_coverage": { 
+                "back": 0.46728971962616817,
+                "mid": 0.46728971962616817,
+                "net": 99.06542056074767
+            } 
+        } 
+
+    }, 
+    "ball": {
+        "average_speed": 627.3323024629406,
+        "average_angle": -0.1031901259004585,
+        "total_visible_frames" : 0
+    } 
+} 
+
+
+
