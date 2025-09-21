@@ -1,0 +1,130 @@
+{
+    "player_1": {
+        "action_counts": {
+            "Forehand": 211,
+            "No Action": 3
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0,
+            "hit_distribution": {
+                "Forehand": 1.0
+            },
+            "unforced_errors": 3,
+            "total_shots": 211
+        },
+        "action_sequence": [
+            {
+                "action": "Forehand",
+                "start_frame": 0,
+                "distance_to_ball": 204.959194249264,
+                "end_frame": 178
+            },
+            {
+                "action": "No Action",
+                "start_frame": 179,
+                "distance_to_ball": 45.92458233350996
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 180,
+                "distance_to_ball": 48.920251772784106,
+                "end_frame": 184
+            },
+            {
+                "action": "No Action",
+                "start_frame": 185,
+                "distance_to_ball": 80.58551922859263,
+                "end_frame": 186
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 187,
+                "distance_to_ball": 106.96283910029796,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 46
+        }
+    },
+    "player_2": {
+        "action_counts": {
+            "Forehand": 208,
+            "No Action": 6
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0,
+            "hit_distribution": {
+                "Forehand": 1.0
+            },
+            "unforced_errors": 5,
+            "total_shots": 208
+        },
+        "action_sequence": [
+            {
+                "action": "Forehand",
+                "start_frame": 0,
+                "distance_to_ball": 204.7239421237839,
+                "end_frame": 28
+            },
+            {
+                "action": "No Action",
+                "start_frame": 29,
+                "distance_to_ball": 88.76170173811062
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 30,
+                "distance_to_ball": 83.47763342364716
+            },
+            {
+                "action": "No Action",
+                "start_frame": 31,
+                "distance_to_ball": 80.10086323980418,
+                "end_frame": 32
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 33,
+                "distance_to_ball": 74.01743030294752,
+                "end_frame": 108
+            },
+            {
+                "action": "No Action",
+                "start_frame": 109,
+                "distance_to_ball": 171.18501999459957
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 110,
+                "distance_to_ball": 163.56498621710733,
+                "end_frame": 134
+            },
+            {
+                "action": "No Action",
+                "start_frame": 135,
+                "distance_to_ball": 21.400312984156432,
+                "end_frame": 136
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 137,
+                "distance_to_ball": 41.066639917688335,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 64
+        }
+    },
+    "match_summary": {
+        "total_frames_processed": 214,
+        "distance_threshold_used": 100,
+        "player_with_most_actions": "1",
+        "most_common_action": "Forehand"
+    }
+}

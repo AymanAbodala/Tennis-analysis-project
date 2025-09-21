@@ -1,0 +1,61 @@
+{
+    "match_summary": {
+        "ball": {
+            "average_speed": 243.607398018671,
+            "average_angle": 0.03862617257720299
+        },
+        "from_json2": {
+            "total_frames_processed": 214,
+            "player_with_most_actions": "p2",
+            "most_common_action": "Forehand"
+        }
+    },
+    "players": {
+        "p1": {
+            "distance_covered": 762.3051784199831,
+            "average_speed": 106.86521192803501,
+            "zone_coverage": {
+                "back": 0.0,
+                "mid": 100.0,
+                "net": 0.0
+            },
+            "serve_accuracy": 0,
+            "hit_distribution": {
+                "Forehand": 1.0
+            },
+            "unforced_errors": 2,
+            "total_shots": 3,
+            "action_counts": {
+                "Forehand": 3
+            },
+            "total_actions": 3,
+            "detailed_stats": {
+                "total_frames": 214,
+                "active_frames": 0
+            }
+        },
+        "p2": {
+            "distance_covered": 504.1770682101874,
+            "average_speed": 70.67902825376459,
+            "zone_coverage": {
+                "back": 0.0,
+                "mid": 0.0,
+                "net": 100.0
+            },
+            "serve_accuracy": 0,
+            "hit_distribution": {
+                "Forehand": 1.0
+            },
+            "unforced_errors": 3,
+            "total_shots": 5,
+            "action_counts": {
+                "Forehand": 5
+            },
+            "total_actions": 5,
+            "detailed_stats": {
+                "total_frames": 214,
+                "active_frames": 0
+            }
+        }
+    }
+}

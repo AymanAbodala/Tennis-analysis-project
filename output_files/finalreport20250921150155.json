@@ -1,0 +1,65 @@
+{
+    "match_summary": {
+        "ball": {
+            "average_speed": 243.607398018671,
+            "average_angle": 0.03862617257720299
+        },
+        "from_json2": {
+            "total_frames_processed": 214,
+            "player_with_most_actions": "p2",
+            "most_common_action": "Serve"
+        }
+    },
+    "players": {
+        "p1": {
+            "distance_covered": 762.3051784199831,
+            "average_speed": 106.86521192803501,
+            "zone_coverage": {
+                "back": 0.0,
+                "mid": 100.0,
+                "net": 0.0
+            },
+            "serve_accuracy": 1.0,
+            "hit_distribution": {
+                "Serve": 0.8125,
+                "Backhand": 0.1875
+            },
+            "unforced_errors": 2,
+            "total_shots": 16,
+            "action_counts": {
+                "Serve": 13,
+                "Backhand": 3
+            },
+            "total_actions": 16,
+            "detailed_stats": {
+                "total_frames": 214,
+                "active_frames": 0
+            }
+        },
+        "p2": {
+            "distance_covered": 504.1770682101874,
+            "average_speed": 70.67902825376459,
+            "zone_coverage": {
+                "back": 0.0,
+                "mid": 0.0,
+                "net": 100.0
+            },
+            "serve_accuracy": 1.0,
+            "hit_distribution": {
+                "Serve": 0.5740740740740741,
+                "Backhand": 0.42592592592592593
+            },
+            "unforced_errors": 5,
+            "total_shots": 54,
+            "action_counts": {
+                "Serve": 31,
+                "Backhand": 23
+            },
+            "total_actions": 54,
+            "detailed_stats": {
+                "total_frames": 214,
+                "active_frames": 0
+            }
+        }
+    }
+}

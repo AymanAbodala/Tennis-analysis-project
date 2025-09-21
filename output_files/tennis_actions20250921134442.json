@@ -1,0 +1,535 @@
+{
+    "player_1": {
+        "action_counts": {
+            "Volley": 127,
+            "Forehand": 6,
+            "No Action": 81
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0,
+            "hit_distribution": {
+                "Volley": 0.9548872180451128,
+                "Forehand": 0.045112781954887216
+            },
+            "unforced_errors": 23,
+            "total_shots": 133
+        },
+        "action_sequence": [
+            {
+                "action": "Volley",
+                "start_frame": 0,
+                "distance_to_ball": 204.959194249264,
+                "end_frame": 9
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 10,
+                "distance_to_ball": 62.66132235574729
+            },
+            {
+                "action": "Volley",
+                "start_frame": 11,
+                "distance_to_ball": 75.59181971638873,
+                "end_frame": 18
+            },
+            {
+                "action": "No Action",
+                "start_frame": 19,
+                "distance_to_ball": 173.11754272507375,
+                "end_frame": 26
+            },
+            {
+                "action": "Volley",
+                "start_frame": 27,
+                "distance_to_ball": 231.5060250794924,
+                "end_frame": 47
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 48,
+                "distance_to_ball": 271.0652746152728
+            },
+            {
+                "action": "Volley",
+                "start_frame": 49,
+                "distance_to_ball": 278.8983023384707,
+                "end_frame": 69
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 70,
+                "distance_to_ball": 246.79789549480304
+            },
+            {
+                "action": "Volley",
+                "start_frame": 71,
+                "distance_to_ball": 234.11735032068123,
+                "end_frame": 75
+            },
+            {
+                "action": "No Action",
+                "start_frame": 76,
+                "distance_to_ball": 161.66064604384903,
+                "end_frame": 77
+            },
+            {
+                "action": "Volley",
+                "start_frame": 78,
+                "distance_to_ball": 127.36085445363129
+            },
+            {
+                "action": "No Action",
+                "start_frame": 79,
+                "distance_to_ball": 116.51442118046495,
+                "end_frame": 98
+            },
+            {
+                "action": "Volley",
+                "start_frame": 99,
+                "distance_to_ball": 127.10857883497121
+            },
+            {
+                "action": "No Action",
+                "start_frame": 100,
+                "distance_to_ball": 136.46903548737714,
+                "end_frame": 109
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 110,
+                "distance_to_ball": 234.61575668510977
+            },
+            {
+                "action": "No Action",
+                "start_frame": 111,
+                "distance_to_ball": 239.0817288806448
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 112,
+                "distance_to_ball": 242.96631296686786
+            },
+            {
+                "action": "Volley",
+                "start_frame": 113,
+                "distance_to_ball": 245.4321640077486,
+                "end_frame": 116
+            },
+            {
+                "action": "No Action",
+                "start_frame": 117,
+                "distance_to_ball": 251.03174855438817
+            },
+            {
+                "action": "Volley",
+                "start_frame": 118,
+                "distance_to_ball": 253.99422861179215
+            },
+            {
+                "action": "No Action",
+                "start_frame": 119,
+                "distance_to_ball": 257.4479805634914,
+                "end_frame": 122
+            },
+            {
+                "action": "Volley",
+                "start_frame": 123,
+                "distance_to_ball": 292.9772033405381,
+                "end_frame": 130
+            },
+            {
+                "action": "No Action",
+                "start_frame": 131,
+                "distance_to_ball": 311.64488993549816,
+                "end_frame": 133
+            },
+            {
+                "action": "Volley",
+                "start_frame": 134,
+                "distance_to_ball": 303.8197651716578,
+                "end_frame": 144
+            },
+            {
+                "action": "No Action",
+                "start_frame": 145,
+                "distance_to_ball": 262.34922496592924,
+                "end_frame": 148
+            },
+            {
+                "action": "Volley",
+                "start_frame": 149,
+                "distance_to_ball": 239.01061291198025,
+                "end_frame": 157
+            },
+            {
+                "action": "No Action",
+                "start_frame": 158,
+                "distance_to_ball": 162.23526558947313,
+                "end_frame": 163
+            },
+            {
+                "action": "Volley",
+                "start_frame": 164,
+                "distance_to_ball": 94.4816008096971,
+                "end_frame": 174
+            },
+            {
+                "action": "No Action",
+                "start_frame": 175,
+                "distance_to_ball": 40.16399491447921
+            },
+            {
+                "action": "Volley",
+                "start_frame": 176,
+                "distance_to_ball": 39.14508069610679,
+                "end_frame": 181
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 182,
+                "distance_to_ball": 46.95061039855688
+            },
+            {
+                "action": "No Action",
+                "start_frame": 183,
+                "distance_to_ball": 54.643476697942624,
+                "end_frame": 191
+            },
+            {
+                "action": "Volley",
+                "start_frame": 192,
+                "distance_to_ball": 161.44952619557685,
+                "end_frame": 193
+            },
+            {
+                "action": "No Action",
+                "start_frame": 194,
+                "distance_to_ball": 177.44831802387463,
+                "end_frame": 197
+            },
+            {
+                "action": "Volley",
+                "start_frame": 198,
+                "distance_to_ball": 191.87258069975036
+            },
+            {
+                "action": "No Action",
+                "start_frame": 199,
+                "distance_to_ball": 195.0643160662003,
+                "end_frame": 206
+            },
+            {
+                "action": "Volley",
+                "start_frame": 207,
+                "distance_to_ball": 217.07274611603663,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 46
+        }
+    },
+    "player_2": {
+        "action_counts": {
+            "No Action": 166,
+            "Volley": 23,
+            "Forehand": 25
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0,
+            "hit_distribution": {
+                "Volley": 0.4791666666666667,
+                "Forehand": 0.5208333333333334
+            },
+            "unforced_errors": 42,
+            "total_shots": 48
+        },
+        "action_sequence": [
+            {
+                "action": "No Action",
+                "start_frame": 0,
+                "distance_to_ball": 204.7239421237839,
+                "end_frame": 44
+            },
+            {
+                "action": "Volley",
+                "start_frame": 45,
+                "distance_to_ball": 58.63478456476953,
+                "end_frame": 46
+            },
+            {
+                "action": "No Action",
+                "start_frame": 47,
+                "distance_to_ball": 58.20674693403053
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 48,
+                "distance_to_ball": 52.44649101560119,
+                "end_frame": 51
+            },
+            {
+                "action": "Volley",
+                "start_frame": 52,
+                "distance_to_ball": 41.62774014758984
+            },
+            {
+                "action": "No Action",
+                "start_frame": 53,
+                "distance_to_ball": 42.61270075097481,
+                "end_frame": 54
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 55,
+                "distance_to_ball": 38.82569544415173
+            },
+            {
+                "action": "No Action",
+                "start_frame": 56,
+                "distance_to_ball": 40.849233621965716,
+                "end_frame": 65
+            },
+            {
+                "action": "Volley",
+                "start_frame": 66,
+                "distance_to_ball": 102.62552588439658,
+                "end_frame": 67
+            },
+            {
+                "action": "No Action",
+                "start_frame": 68,
+                "distance_to_ball": 120.32829511858114,
+                "end_frame": 85
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 86,
+                "distance_to_ball": 296.04550220298177
+            },
+            {
+                "action": "No Action",
+                "start_frame": 87,
+                "distance_to_ball": 298.88861414205206,
+                "end_frame": 89
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 90,
+                "distance_to_ball": 312.464889980147
+            },
+            {
+                "action": "No Action",
+                "start_frame": 91,
+                "distance_to_ball": 316.4916595641801,
+                "end_frame": 105
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 106,
+                "distance_to_ball": 195.47042816925634
+            },
+            {
+                "action": "No Action",
+                "start_frame": 107,
+                "distance_to_ball": 187.46563875955624
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 108,
+                "distance_to_ball": 178.0422160530022
+            },
+            {
+                "action": "No Action",
+                "start_frame": 109,
+                "distance_to_ball": 171.18501999459957,
+                "end_frame": 111
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 112,
+                "distance_to_ball": 153.659765552462
+            },
+            {
+                "action": "No Action",
+                "start_frame": 113,
+                "distance_to_ball": 148.83565728759012
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 114,
+                "distance_to_ball": 142.314556900167,
+                "end_frame": 115
+            },
+            {
+                "action": "No Action",
+                "start_frame": 116,
+                "distance_to_ball": 132.14874702836156,
+                "end_frame": 118
+            },
+            {
+                "action": "Volley",
+                "start_frame": 119,
+                "distance_to_ball": 112.64226965796125
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 120,
+                "distance_to_ball": 103.96699802635165
+            },
+            {
+                "action": "No Action",
+                "start_frame": 121,
+                "distance_to_ball": 98.63307876145637
+            },
+            {
+                "action": "Volley",
+                "start_frame": 122,
+                "distance_to_ball": 91.06390506336074,
+                "end_frame": 126
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 127,
+                "distance_to_ball": 37.55528059755982,
+                "end_frame": 129
+            },
+            {
+                "action": "No Action",
+                "start_frame": 130,
+                "distance_to_ball": 16.105400781254787,
+                "end_frame": 134
+            },
+            {
+                "action": "Volley",
+                "start_frame": 135,
+                "distance_to_ball": 21.400312984156432,
+                "end_frame": 138
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 139,
+                "distance_to_ball": 62.780761751201354
+            },
+            {
+                "action": "No Action",
+                "start_frame": 140,
+                "distance_to_ball": 72.18945404217592,
+                "end_frame": 141
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 142,
+                "distance_to_ball": 89.74248873314743
+            },
+            {
+                "action": "No Action",
+                "start_frame": 143,
+                "distance_to_ball": 100.9612919597385,
+                "end_frame": 153
+            },
+            {
+                "action": "Volley",
+                "start_frame": 154,
+                "distance_to_ball": 185.01434428959092
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 155,
+                "distance_to_ball": 193.86549263475936,
+                "end_frame": 156
+            },
+            {
+                "action": "No Action",
+                "start_frame": 157,
+                "distance_to_ball": 211.25896907591306,
+                "end_frame": 162
+            },
+            {
+                "action": "Volley",
+                "start_frame": 163,
+                "distance_to_ball": 264.1713354309075,
+                "end_frame": 164
+            },
+            {
+                "action": "No Action",
+                "start_frame": 165,
+                "distance_to_ball": 290.86971292246284,
+                "end_frame": 173
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 174,
+                "distance_to_ball": 327.10241307041645
+            },
+            {
+                "action": "No Action",
+                "start_frame": 175,
+                "distance_to_ball": 331.58850901272024,
+                "end_frame": 188
+            },
+            {
+                "action": "Volley",
+                "start_frame": 189,
+                "distance_to_ball": 249.7060154063784
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 190,
+                "distance_to_ball": 242.30085885135975
+            },
+            {
+                "action": "Volley",
+                "start_frame": 191,
+                "distance_to_ball": 235.43638569985865,
+                "end_frame": 192
+            },
+            {
+                "action": "No Action",
+                "start_frame": 193,
+                "distance_to_ball": 221.54959569959126
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 194,
+                "distance_to_ball": 216.1475398007559,
+                "end_frame": 196
+            },
+            {
+                "action": "Volley",
+                "start_frame": 197,
+                "distance_to_ball": 193.71123752663428
+            },
+            {
+                "action": "No Action",
+                "start_frame": 198,
+                "distance_to_ball": 186.13395356656383,
+                "end_frame": 208
+            },
+            {
+                "action": "Volley",
+                "start_frame": 209,
+                "distance_to_ball": 103.78413387764343
+            },
+            {
+                "action": "No Action",
+                "start_frame": 210,
+                "distance_to_ball": 96.29478804649186,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 64
+        }
+    },
+    "match_summary": {
+        "total_frames_processed": 214,
+        "distance_threshold_used": 100,
+        "player_with_most_actions": "1",
+        "most_common_action": "No Action"
+    }
+}

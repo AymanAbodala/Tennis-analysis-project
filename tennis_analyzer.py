@@ -17,11 +17,8 @@ import ultralytics
 
 print(sys.executable)
 
-
 # Add the path to import modules from other folders
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
-
 
 # Import your custom modules
 try:
@@ -68,7 +65,6 @@ def get_image_base64(image_path):
 
 # Function to add background image from local file
 def add_bg_image_local():
-    # Check if image exists
     if os.path.exists("Pickleball-Main.jpg"):
         encoded_string = get_image_base64("Pickleball-Main.jpg")
         st.markdown(
@@ -85,7 +81,6 @@ def add_bg_image_local():
             unsafe_allow_html=True
         )
     else:
-        # Fallback to online image if local doesn't exist
         st.markdown(
             f"""
             <style>
@@ -104,10 +99,8 @@ def add_bg_image_local():
 # Function to send JSON to FastAPI and get recommendations
 def get_recommendations_from_api(json_data):
     try:
-        # Create a temporary file to send
         files = {"file": ("tennis_features.json", json.dumps(json_data), "application/json")}
         response = requests.post(FASTAPI_URL, files=files)
-
         if response.status_code == 200:
             return response.json()
         else:
@@ -120,20 +113,15 @@ def get_recommendations_from_api(json_data):
 def download_youtube_video(youtube_url):
     try:
         import yt_dlp
-
-        # Create a temporary file to save the video
         temp_dir = tempfile.mkdtemp()
         video_path = os.path.join(temp_dir, "downloaded_video.mp4")
-
         ydl_opts = {
-            'format': 'best[height<=720]',  # Download HD quality (720p)
+            'format': 'best[height<=720]',
             'outtmpl': video_path,
             'quiet': True,
         }
-
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([youtube_url])
-
         return video_path
     except Exception as e:
         st.error(f"Error downloading YouTube video: {str(e)}")
@@ -146,7 +134,6 @@ def is_valid_youtube_url(url):
         r'(https?://)?(www\.)?'
         r'(youtube|youtu|youtube-nocookie)\.(com|be)/'
         r'(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})')
-
     match = re.match(youtube_regex, url)
     return bool(match)
 
@@ -161,6 +148,29 @@ def load_json_data(json_path):
         return None
 
 
+# Function to display video with proper formatting
+def display_video(video_path, title="Processed Video"):
+    if video_path and os.path.exists(video_path):
+        st.markdown(f"<h3 style='text-align: center; color: white;'>{title}</h3>", unsafe_allow_html=True)
+
+        # Create a container for the video
+        video_container = st.container()
+        with video_container:
+            # Display the video
+            st.video(video_path)
+
+            # Add download button
+            with open(video_path, "rb") as file:
+                btn = st.download_button(
+                    label="Download Processed Video",
+                    data=file,
+                    file_name=os.path.basename(video_path),
+                    mime="video/mp4"
+                )
+        return True
+    return False
+
+
 # Custom CSS
 def local_css():
     st.markdown("""
@@ -171,19 +181,16 @@ def local_css():
         box-sizing: border-box;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
     .stApp {
         background-color: rgba(255, 255, 255, 0.2) !important;
         background-blend-mode: overlay;
     }
-
     .main-container {
         background-color: rgba(0, 0, 0, 0.6);
         border-radius: 15px;
         padding: 20px;
         margin: 20px 0;
     }
-
     .logo-container {
         display: flex;
         justify-content: space-between;
@@ -192,7 +199,6 @@ def local_css():
         margin: 0 auto 30px auto;
         padding: 20px;
     }
-
     .logo {
         width: 140px;
         height: 70px;
@@ -204,19 +210,16 @@ def local_css():
         box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
         padding: 10px;
     }
-
     .logo-img {
         max-width: 100%;
         max-height: 100%;
     }
-
     .logo span {
         color: #1a2a6c;
         font-weight: bold;
         font-size: 1.3rem;
         text-align: center;
     }
-
     .info-icon {
         position: fixed;
         bottom: 20px;
@@ -235,11 +238,9 @@ def local_css():
         z-index: 1000;
         transition: transform 0.3s ease;
     }
-
     .info-icon:hover {
         transform: scale(1.1);
     }
-
     .modal-content {
         background: linear-gradient(135deg, #1a2a6c, #b21f1f);
         width: 90%;
@@ -250,7 +251,6 @@ def local_css():
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
         color: white;
     }
-
     .close-btn {
         position: absolute;
         top: 15px;
@@ -259,7 +259,6 @@ def local_css():
         cursor: pointer;
         color: #fdbb2d;
     }
-
     .container {
         width: 100%;
         max-width: 1000px;
@@ -268,25 +267,21 @@ def local_css():
         gap: 30px;
         margin: 100px auto 0 auto;
     }
-
     header {
         text-align: center;
         padding: 20px 0;
     }
-
     h1 {
         font-size: 2.8rem;
         margin-bottom: 10px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         color: white;
     }
-
     .subtitle {
         font-size: 1.2rem;
         opacity: 0.9;
         color: white;
     }
-
     .upload-section {
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
@@ -296,24 +291,20 @@ def local_css():
         border: 2px dashed rgba(255, 255, 255, 0.3);
         transition: all 0.3s ease;
     }
-
     .upload-section:hover {
         background: rgba(255, 255, 255, 0.2);
         border-color: rgba(255, 255, 255, 0.5);
     }
-
     .upload-icon {
         font-size: 4rem;
         margin-bottom: 20px;
         color: #fdbb2d;
     }
-
     .upload-text {
         font-size: 1.5rem;
         margin-bottom: 25px;
         color: white;
     }
-
     .upload-btn {
         background: linear-gradient(to right, #ff7e5f, #feb47b);
         border: none;
@@ -325,39 +316,31 @@ def local_css():
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-
     .upload-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
-
     .upload-btn:active {
         transform: translateY(1px);
     }
-
     .smiley {
         display: block;
         margin-top: 15px;
         font-size: 1.5rem;
     }
-
-    /* Results styling */
     .recommendation-box {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         padding: 20px;
         margin: 15px 0;
         border-left: 4px solid #fdbb2d;
-        color: #000000; /* Black text color */
+        color: #000000;
     }
-
     .player-title {
-        color: #1a2a6c; /* Dark blue for player title */
+        color: #1a2a6c;
         font-size: 1.5rem;
         margin-bottom: 10px;
     }
-
-    /* Stats display */
     .stats-container {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
@@ -365,7 +348,6 @@ def local_css():
         margin: 15px 0;
         color: #000000;
     }
-
     .stats-title {
         color: #1a2a6c;
         font-size: 1.3rem;
@@ -373,7 +355,6 @@ def local_css():
         border-bottom: 2px solid #fdbb2d;
         padding-bottom: 5px;
     }
-
     .stat-item {
         display: flex;
         justify-content: space-between;
@@ -381,17 +362,13 @@ def local_css():
         padding: 5px 0;
         border-bottom: 1px solid #eee;
     }
-
     .stat-label {
         font-weight: bold;
         color: #1a2a6c;
     }
-
     .stat-value {
         color: #333;
     }
-
-    /* External Link Section */
     .external-link-section {
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
@@ -400,7 +377,6 @@ def local_css():
         text-align: center;
         margin-top: 20px;
     }
-
     .link-input {
         width: 100%;
         max-width: 500px;
@@ -413,11 +389,9 @@ def local_css():
         font-size: 1rem;
         text-align: center;
     }
-
     .link-input::placeholder {
         color: #666;
     }
-
     .link-btn {
         background: linear-gradient(to right, #00b4d8, #0077b6);
         border: none;
@@ -430,53 +404,45 @@ def local_css():
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         margin-top: 10px;
     }
-
     .link-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
-
     .results-section {
         background: rgba(0, 0, 0, 0.5);
         border-radius: 15px;
         padding: 30px;
         margin-top: 20px;
     }
-
     .results-title {
         font-size: 2rem;
         margin-bottom: 20px;
         color: #fdbb2d;
     }
-
     .sponsor {
         font-size: 1.8rem;
         font-weight: bold;
         color: #00b4d8;
         margin-top: 30px;
     }
-
     .team-section {
         background: rgba(255, 255, 255, 0.15);
         border-radius: 20px;
         padding: 30px;
         margin-top: 40px;
     }
-
     .section-title {
         font-size: 2rem;
         text-align: center;
         margin-bottom: 30px;
         color: #fdbb2d;
     }
-
     .team-members {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 25px;
     }
-
     .member {
         background: rgba(255, 255, 255, 0.2);
         border-radius: 15px;
@@ -485,12 +451,10 @@ def local_css():
         text-align: center;
         transition: transform 0.3s ease;
     }
-
     .member:hover {
         transform: translateY(-5px);
         background: rgba(255, 255, 255, 0.25);
     }
-
     .member-img {
         width: 100px;
         height: 100px;
@@ -505,19 +469,16 @@ def local_css():
         font-size: 2.5rem;
         color: #fdbb2d;
     }
-
     .member-name {
         font-size: 1.3rem;
         margin-bottom: 5px;
         color: white;
     }
-
     .member-role {
         color: #fdbb2d;
         margin-bottom: 10px;
         font-style: italic;
     }
-
     footer {
         margin-top: 50px;
         text-align: center;
@@ -525,14 +486,11 @@ def local_css():
         font-size: 0.9rem;
         color: white;
     }
-
-    /* Tabs styling */
     .tabs {
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
     }
-
     .tab {
         padding: 10px 20px;
         margin: 0 10px;
@@ -541,82 +499,75 @@ def local_css():
         cursor: pointer;
         transition: all 0.3s ease;
     }
-
     .tab.active {
         background: rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-
     .tab:hover {
         background: rgba(255, 255, 255, 0.2);
     }
-
+    .video-container {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+    }
+    .video-title {
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
     @media (max-width: 768px) {
         h1 {
             font-size: 2.2rem;
         }
-
         .logo {
             width: 110px;
             height: 55px;
         }
-
         .logo span {
             font-size: 1rem;
         }
-
         .upload-section {
             padding: 30px 20px;
         }
-
         .upload-text {
             font-size: 1.3rem;
         }
-
         .external-link-section {
             padding: 20px 15px;
         }
-
         .link-input {
             padding: 12px;
             font-size: 0.9rem;
         }
-
         .team-members {
             gap: 15px;
         }
-
         .member {
             width: 100%;
             max-width: 250px;
         }
-
         .tabs {
             flex-direction: column;
             align-items: center;
         }
-
         .tab {
             margin: 5px 0;
             width: 100%;
             max-width: 300px;
         }
     }
-
-    /* Streamlit specific adjustments */
     .stButton > button {
         width: 100%;
     }
-
     .css-1d391kg {
         padding-top: 0;
     }
-
-    /* Custom styling for Streamlit elements */
     .stFileUploader {
         width: 100%;
     }
-
     .stTextInput input {
         background: rgba(255, 255, 255, 0.9) !important;
         color: #1a2a6c !important;
@@ -731,6 +682,8 @@ def main():
         st.session_state.processed_video_path = None
     if 'detection_results' not in st.session_state:
         st.session_state.detection_results = None
+    if 'show_processed_video' not in st.session_state:
+        st.session_state.show_processed_video = False
 
     # Tabs for different input methods
     tab1, tab2, tab3 = st.tabs(["Upload Video", "YouTube Link", "JSON Analysis"])
@@ -751,6 +704,7 @@ def main():
 
             if st.button("Analyze Video", key="analyze_video", use_container_width=True):
                 st.session_state.processing = True
+                st.session_state.show_processed_video = False
 
                 # Create a temporary file to save the uploaded video
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as tmp_file:
@@ -762,6 +716,9 @@ def main():
                         # Step 1: Object detection and tracking
                         st.info("Running object detection and tracking...")
                         detection_json_path, processed_video_path = main_object_tracking(video_path)
+
+                        # Store the processed video path in session state
+                        st.session_state.processed_video_path = processed_video_path
 
                         # Step 2: Action recognition
                         st.info("Running action recognition...")
@@ -775,10 +732,8 @@ def main():
                         final_report_data = load_json_data(final_report_json_path)
                         st.session_state.analysis_data = final_report_data
 
-                        # Show the processed video with detections
-                        if processed_video_path and os.path.exists(processed_video_path):
-                            st.info("Video with object detection results:")
-                            st.video(processed_video_path)
+                        # Set flag to show processed video
+                        st.session_state.show_processed_video = True
 
                         # Clean up the temporary file
                         os.unlink(video_path)
@@ -809,6 +764,8 @@ def main():
 
                 if st.button("Analyze YouTube Video", key="analyze_youtube", use_container_width=True):
                     st.session_state.processing = True
+                    st.session_state.show_processed_video = False
+
                     try:
                         with st.spinner("Processing YouTube video. This may take several minutes..."):
                             # Download the YouTube video
@@ -817,6 +774,9 @@ def main():
                                 # Step 1: Object detection and tracking
                                 st.info("Running object detection and tracking...")
                                 detection_json_path, processed_video_path = main_object_tracking(video_path)
+
+                                # Store the processed video path in session state
+                                st.session_state.processed_video_path = processed_video_path
 
                                 # Step 2: Action recognition
                                 st.info("Running action recognition...")
@@ -830,10 +790,8 @@ def main():
                                 final_report_data = load_json_data(final_report_json_path)
                                 st.session_state.analysis_data = final_report_data
 
-                                # Show the processed video with detections
-                                if processed_video_path and os.path.exists(processed_video_path):
-                                    st.info("Video with object detection results:")
-                                    st.video(processed_video_path)
+                                # Set flag to show processed video
+                                st.session_state.show_processed_video = True
 
                                 # Clean up the downloaded video
                                 os.unlink(video_path)
@@ -872,6 +830,10 @@ def main():
 
             except json.JSONDecodeError:
                 st.error("Invalid JSON file. Please upload a valid JSON file.")
+
+    # Display processed video if available
+    if st.session_state.show_processed_video and st.session_state.processed_video_path:
+        display_video(st.session_state.processed_video_path, "Processed Video with Object Detection")
 
     # Display results if available
     if st.session_state.results:
@@ -916,7 +878,7 @@ def main():
                 st.markdown(f"""
                 <div class="stats-container">
                     <h4 class="stats-title">Ball Statistics</h4>
-                                        <div class="stat-item">
+                    <div class="stat-item">
                         <span class="stat-label">Average Angle:</span>
                         <span class="stat-value">{ball_stats.get('average_angle', 0):.2f}°</span>
                     </div>

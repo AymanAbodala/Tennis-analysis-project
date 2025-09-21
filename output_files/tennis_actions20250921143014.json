@@ -1,0 +1,314 @@
+{
+    "player_1": {
+        "action_counts": {
+            "Backhand": 183,
+            "Serve": 15,
+            "Forehand": 16
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.0,
+            "hit_distribution": {
+                "Backhand": 0.8551401869158879,
+                "Serve": 0.07009345794392523,
+                "Forehand": 0.07476635514018691
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Backhand",
+                "start_frame": 0,
+                "distance_to_ball": 204.959194249264,
+                "end_frame": 20
+            },
+            {
+                "action": "Serve",
+                "start_frame": 21,
+                "distance_to_ball": 192.9199556943883,
+                "end_frame": 24
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 25,
+                "distance_to_ball": 217.92000871452953,
+                "end_frame": 34
+            },
+            {
+                "action": "Serve",
+                "start_frame": 35,
+                "distance_to_ball": 253.50295542102617
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 36,
+                "distance_to_ball": 254.2060022558491,
+                "end_frame": 74
+            },
+            {
+                "action": "Serve",
+                "start_frame": 75,
+                "distance_to_ball": 175.69008385998228
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 76,
+                "distance_to_ball": 161.66064604384903,
+                "end_frame": 77
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 78,
+                "distance_to_ball": 127.36085445363129
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 79,
+                "distance_to_ball": 116.51442118046495,
+                "end_frame": 80
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 81,
+                "distance_to_ball": 91.5429710941109
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 82,
+                "distance_to_ball": 86.67605174784018
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 83,
+                "distance_to_ball": 81.67188406087621
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 84,
+                "distance_to_ball": 81.67952814263613,
+                "end_frame": 86
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 87,
+                "distance_to_ball": 78.0325411445465
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 88,
+                "distance_to_ball": 75.27479357830656,
+                "end_frame": 105
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 106,
+                "distance_to_ball": 204.92275519855843
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 107,
+                "distance_to_ball": 214.30595128363973,
+                "end_frame": 119
+            },
+            {
+                "action": "Serve",
+                "start_frame": 120,
+                "distance_to_ball": 267.7015573400173,
+                "end_frame": 122
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 123,
+                "distance_to_ball": 292.9772033405381,
+                "end_frame": 130
+            },
+            {
+                "action": "Serve",
+                "start_frame": 131,
+                "distance_to_ball": 311.64488993549816
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 132,
+                "distance_to_ball": 308.34999551492,
+                "end_frame": 145
+            },
+            {
+                "action": "Serve",
+                "start_frame": 146,
+                "distance_to_ball": 257.8053708915583
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 147,
+                "distance_to_ball": 252.7203285489341,
+                "end_frame": 148
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 149,
+                "distance_to_ball": 239.01061291198025
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 150,
+                "distance_to_ball": 233.19534476696444,
+                "end_frame": 156
+            },
+            {
+                "action": "Serve",
+                "start_frame": 157,
+                "distance_to_ball": 172.0349426601498,
+                "end_frame": 158
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 159,
+                "distance_to_ball": 152.62149711352907,
+                "end_frame": 160
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 161,
+                "distance_to_ball": 132.94966052004676
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 162,
+                "distance_to_ball": 118.08265250060803,
+                "end_frame": 164
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 165,
+                "distance_to_ball": 79.73713574645217,
+                "end_frame": 186
+            },
+            {
+                "action": "Serve",
+                "start_frame": 187,
+                "distance_to_ball": 106.96283910029796,
+                "end_frame": 188
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 189,
+                "distance_to_ball": 135.2846867478163,
+                "end_frame": 197
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 198,
+                "distance_to_ball": 191.87258069975036
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 199,
+                "distance_to_ball": 195.0643160662003,
+                "end_frame": 202
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 203,
+                "distance_to_ball": 205.9561358035308
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 204,
+                "distance_to_ball": 206.83435258553192
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 205,
+                "distance_to_ball": 209.96643965093315
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 206,
+                "distance_to_ball": 213.64214482392998
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 207,
+                "distance_to_ball": 217.07274611603663
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 208,
+                "distance_to_ball": 220.79788302452033
+            },
+            {
+                "action": "Forehand",
+                "start_frame": 209,
+                "distance_to_ball": 227.6426065604114
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 210,
+                "distance_to_ball": 234.10988963788023,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 46
+        }
+    },
+    "player_2": {
+        "action_counts": {
+            "Backhand": 212,
+            "Serve": 2
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.0,
+            "hit_distribution": {
+                "Backhand": 0.9906542056074766,
+                "Serve": 0.009345794392523364
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Backhand",
+                "start_frame": 0,
+                "distance_to_ball": 204.7239421237839,
+                "end_frame": 7
+            },
+            {
+                "action": "Serve",
+                "start_frame": 8,
+                "distance_to_ball": 271.87480914378636
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 9,
+                "distance_to_ball": 282.73730235344186,
+                "end_frame": 168
+            },
+            {
+                "action": "Serve",
+                "start_frame": 169,
+                "distance_to_ball": 316.22918444162246
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 170,
+                "distance_to_ball": 319.134176455362,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 64
+        }
+    },
+    "match_summary": {
+        "total_frames_processed": 214,
+        "distance_threshold_used": 100,
+        "player_with_most_actions": "1",
+        "most_common_action": "Backhand"
+    }
+}

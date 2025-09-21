@@ -1,6 +1,7 @@
 import json
 import numpy as np
 from collections import defaultdict
+from datetime import datetime
 
 # ===== HELPER FUNCTIONS =====
 def get_center(box):
@@ -259,7 +260,7 @@ def analyze_tennis_match(ball_positions, player1_positions, player2_positions,
     return report
 
 # ===== WRAPPER FUNCTION TO PROCESS 2 JSON FILES =====
-def process_json_files(tracking_json_path, actions_json_path, output_json_path, fps=30, frame_height=720, distance_threshold=100):
+def process_json_files(tracking_json_path, actions_json_path, fps=30, frame_height=720, distance_threshold=100):
     # Load tracking data
     with open(tracking_json_path, "r") as f:
         tracking_data = json.load(f)
@@ -285,10 +286,10 @@ def process_json_files(tracking_json_path, actions_json_path, output_json_path, 
         player1_detailed_actions, player2_detailed_actions,
         distance_threshold
     )
-
+    output_json_path = f"D:\\NTI IB\\Tennis-analysis-project\\output_files\\finalreport{datetime.now().strftime('%Y%m%d%H%M%S')}.json"
     # Save report
     with open(output_json_path, "w") as f:
         json.dump(report, f, indent=4)
 
     print(f"Report saved to {output_json_path}")
-    return report , output_json_path
+    return output_json_path

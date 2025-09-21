@@ -1,0 +1,611 @@
+{
+    "player_1": {
+        "action_counts": {
+            "Backhand": 117,
+            "Volley": 93,
+            "Serve": 4
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.5,
+            "hit_distribution": {
+                "Backhand": 0.5467289719626168,
+                "Volley": 0.43457943925233644,
+                "Serve": 0.018691588785046728
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Backhand",
+                "start_frame": 0,
+                "distance_to_ball": 204.959194249264,
+                "end_frame": 1
+            },
+            {
+                "action": "Volley",
+                "start_frame": 2,
+                "distance_to_ball": 190.4509016239001
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 3,
+                "distance_to_ball": 175.0052202818342,
+                "end_frame": 15
+            },
+            {
+                "action": "Volley",
+                "start_frame": 16,
+                "distance_to_ball": 140.87345896571486
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 17,
+                "distance_to_ball": 154.4175302182596
+            },
+            {
+                "action": "Volley",
+                "start_frame": 18,
+                "distance_to_ball": 163.21922599210674,
+                "end_frame": 26
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 27,
+                "distance_to_ball": 231.5060250794924
+            },
+            {
+                "action": "Volley",
+                "start_frame": 28,
+                "distance_to_ball": 236.8885325846217
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 29,
+                "distance_to_ball": 242.42245952873353,
+                "end_frame": 33
+            },
+            {
+                "action": "Volley",
+                "start_frame": 34,
+                "distance_to_ball": 253.39930937089017,
+                "end_frame": 36
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 37,
+                "distance_to_ball": 255.14460803249057,
+                "end_frame": 60
+            },
+            {
+                "action": "Volley",
+                "start_frame": 61,
+                "distance_to_ball": 308.7428362309143,
+                "end_frame": 62
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 63,
+                "distance_to_ball": 305.1207727207437,
+                "end_frame": 73
+            },
+            {
+                "action": "Volley",
+                "start_frame": 74,
+                "distance_to_ball": 194.2816203010061,
+                "end_frame": 84
+            },
+            {
+                "action": "Serve",
+                "start_frame": 85,
+                "distance_to_ball": 82.07028316356421
+            },
+            {
+                "action": "Volley",
+                "start_frame": 86,
+                "distance_to_ball": 81.75737350133589,
+                "end_frame": 87
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 88,
+                "distance_to_ball": 75.27479357830656
+            },
+            {
+                "action": "Volley",
+                "start_frame": 89,
+                "distance_to_ball": 72.92532665427463
+            },
+            {
+                "action": "Serve",
+                "start_frame": 90,
+                "distance_to_ball": 69.7330446990935
+            },
+            {
+                "action": "Volley",
+                "start_frame": 91,
+                "distance_to_ball": 66.80938459594802,
+                "end_frame": 94
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 95,
+                "distance_to_ball": 53.21856928298205,
+                "end_frame": 101
+            },
+            {
+                "action": "Volley",
+                "start_frame": 102,
+                "distance_to_ball": 169.09978648458687,
+                "end_frame": 111
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 112,
+                "distance_to_ball": 242.96631296686786,
+                "end_frame": 114
+            },
+            {
+                "action": "Volley",
+                "start_frame": 115,
+                "distance_to_ball": 246.7318026696762
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 116,
+                "distance_to_ball": 248.50375853981404,
+                "end_frame": 119
+            },
+            {
+                "action": "Volley",
+                "start_frame": 120,
+                "distance_to_ball": 267.7015573400173,
+                "end_frame": 122
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 123,
+                "distance_to_ball": 292.9772033405381,
+                "end_frame": 128
+            },
+            {
+                "action": "Volley",
+                "start_frame": 129,
+                "distance_to_ball": 318.07917185800073
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 130,
+                "distance_to_ball": 314.7026642893959
+            },
+            {
+                "action": "Volley",
+                "start_frame": 131,
+                "distance_to_ball": 311.64488993549816,
+                "end_frame": 134
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 135,
+                "distance_to_ball": 302.56059990916367,
+                "end_frame": 140
+            },
+            {
+                "action": "Volley",
+                "start_frame": 141,
+                "distance_to_ball": 281.6281476831005,
+                "end_frame": 142
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 143,
+                "distance_to_ball": 272.00408795609246
+            },
+            {
+                "action": "Volley",
+                "start_frame": 144,
+                "distance_to_ball": 266.8018982915353,
+                "end_frame": 148
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 149,
+                "distance_to_ball": 239.01061291198025,
+                "end_frame": 154
+            },
+            {
+                "action": "Volley",
+                "start_frame": 155,
+                "distance_to_ball": 190.61375935254688,
+                "end_frame": 177
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 178,
+                "distance_to_ball": 42.842446992576974,
+                "end_frame": 186
+            },
+            {
+                "action": "Volley",
+                "start_frame": 187,
+                "distance_to_ball": 106.96283910029796,
+                "end_frame": 191
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 192,
+                "distance_to_ball": 161.44952619557685,
+                "end_frame": 199
+            },
+            {
+                "action": "Volley",
+                "start_frame": 200,
+                "distance_to_ball": 198.57977242873298
+            },
+            {
+                "action": "Serve",
+                "start_frame": 201,
+                "distance_to_ball": 201.9629360361374,
+                "end_frame": 202
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 203,
+                "distance_to_ball": 205.9561358035308,
+                "end_frame": 204
+            },
+            {
+                "action": "Volley",
+                "start_frame": 205,
+                "distance_to_ball": 209.96643965093315,
+                "end_frame": 207
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 208,
+                "distance_to_ball": 220.79788302452033,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 46
+        }
+    },
+    "player_2": {
+        "action_counts": {
+            "Volley": 73,
+            "Backhand": 133,
+            "Serve": 8
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.125,
+            "hit_distribution": {
+                "Volley": 0.3411214953271028,
+                "Backhand": 0.6214953271028038,
+                "Serve": 0.037383177570093455
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Volley",
+                "start_frame": 0,
+                "distance_to_ball": 204.7239421237839,
+                "end_frame": 1
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 2,
+                "distance_to_ball": 212.51446773665356,
+                "end_frame": 7
+            },
+            {
+                "action": "Serve",
+                "start_frame": 8,
+                "distance_to_ball": 271.87480914378636
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 9,
+                "distance_to_ball": 282.73730235344186,
+                "end_frame": 19
+            },
+            {
+                "action": "Volley",
+                "start_frame": 20,
+                "distance_to_ball": 151.94402825918536
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 21,
+                "distance_to_ball": 144.5463670383341,
+                "end_frame": 26
+            },
+            {
+                "action": "Volley",
+                "start_frame": 27,
+                "distance_to_ball": 101.72468921354333,
+                "end_frame": 28
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 29,
+                "distance_to_ball": 88.76170173811062,
+                "end_frame": 30
+            },
+            {
+                "action": "Volley",
+                "start_frame": 31,
+                "distance_to_ball": 80.10086323980418
+            },
+            {
+                "action": "Serve",
+                "start_frame": 32,
+                "distance_to_ball": 76.5638006498866
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 33,
+                "distance_to_ball": 74.01743030294752,
+                "end_frame": 39
+            },
+            {
+                "action": "Volley",
+                "start_frame": 40,
+                "distance_to_ball": 64.67710830574858
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 41,
+                "distance_to_ball": 63.07594897404495,
+                "end_frame": 42
+            },
+            {
+                "action": "Volley",
+                "start_frame": 43,
+                "distance_to_ball": 60.682496334641215,
+                "end_frame": 44
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 45,
+                "distance_to_ball": 58.63478456476953
+            },
+            {
+                "action": "Volley",
+                "start_frame": 46,
+                "distance_to_ball": 59.05934138846205,
+                "end_frame": 50
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 51,
+                "distance_to_ball": 40.869043429127125,
+                "end_frame": 53
+            },
+            {
+                "action": "Volley",
+                "start_frame": 54,
+                "distance_to_ball": 40.905801877665645
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 55,
+                "distance_to_ball": 38.82569544415173,
+                "end_frame": 56
+            },
+            {
+                "action": "Volley",
+                "start_frame": 57,
+                "distance_to_ball": 48.05433709883187
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 58,
+                "distance_to_ball": 53.48668211117145
+            },
+            {
+                "action": "Volley",
+                "start_frame": 59,
+                "distance_to_ball": 58.04798208202602
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 60,
+                "distance_to_ball": 63.48638428651468,
+                "end_frame": 68
+            },
+            {
+                "action": "Volley",
+                "start_frame": 69,
+                "distance_to_ball": 131.22751499417444,
+                "end_frame": 74
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 75,
+                "distance_to_ball": 204.0222722120517,
+                "end_frame": 78
+            },
+            {
+                "action": "Volley",
+                "start_frame": 79,
+                "distance_to_ball": 259.1644464118447,
+                "end_frame": 84
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 85,
+                "distance_to_ball": 295.72267295948194,
+                "end_frame": 94
+            },
+            {
+                "action": "Volley",
+                "start_frame": 95,
+                "distance_to_ball": 337.4648611652323,
+                "end_frame": 96
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 97,
+                "distance_to_ball": 297.336115433962,
+                "end_frame": 101
+            },
+            {
+                "action": "Volley",
+                "start_frame": 102,
+                "distance_to_ball": 221.4568376532094
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 103,
+                "distance_to_ball": 215.17569000059706,
+                "end_frame": 107
+            },
+            {
+                "action": "Volley",
+                "start_frame": 108,
+                "distance_to_ball": 178.0422160530022,
+                "end_frame": 109
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 110,
+                "distance_to_ball": 163.56498621710733,
+                "end_frame": 124
+            },
+            {
+                "action": "Volley",
+                "start_frame": 125,
+                "distance_to_ball": 71.21467104623184
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 126,
+                "distance_to_ball": 64.61174520315481,
+                "end_frame": 133
+            },
+            {
+                "action": "Volley",
+                "start_frame": 134,
+                "distance_to_ball": 14.196940275983414,
+                "end_frame": 137
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 138,
+                "distance_to_ball": 53.94886455143271
+            },
+            {
+                "action": "Volley",
+                "start_frame": 139,
+                "distance_to_ball": 62.780761751201354,
+                "end_frame": 146
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 147,
+                "distance_to_ball": 131.38697563638013
+            },
+            {
+                "action": "Volley",
+                "start_frame": 148,
+                "distance_to_ball": 136.97258969971642
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 149,
+                "distance_to_ball": 145.21384518911552,
+                "end_frame": 157
+            },
+            {
+                "action": "Volley",
+                "start_frame": 158,
+                "distance_to_ball": 219.4858530868598,
+                "end_frame": 159
+            },
+            {
+                "action": "Serve",
+                "start_frame": 160,
+                "distance_to_ball": 235.9102108450682
+            },
+            {
+                "action": "Volley",
+                "start_frame": 161,
+                "distance_to_ball": 245.09590619321614,
+                "end_frame": 162
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 163,
+                "distance_to_ball": 264.1713354309075,
+                "end_frame": 164
+            },
+            {
+                "action": "Serve",
+                "start_frame": 165,
+                "distance_to_ball": 290.86971292246284,
+                "end_frame": 166
+            },
+            {
+                "action": "Volley",
+                "start_frame": 167,
+                "distance_to_ball": 308.3670400109694
+            },
+            {
+                "action": "Serve",
+                "start_frame": 168,
+                "distance_to_ball": 311.7907133183847,
+                "end_frame": 170
+            },
+            {
+                "action": "Volley",
+                "start_frame": 171,
+                "distance_to_ball": 320.12317270636305,
+                "end_frame": 188
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 189,
+                "distance_to_ball": 249.7060154063784,
+                "end_frame": 203
+            },
+            {
+                "action": "Volley",
+                "start_frame": 204,
+                "distance_to_ball": 141.7998737019624
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 205,
+                "distance_to_ball": 134.88562394333732,
+                "end_frame": 208
+            },
+            {
+                "action": "Volley",
+                "start_frame": 209,
+                "distance_to_ball": 103.78413387764343
+            },
+            {
+                "action": "Backhand",
+                "start_frame": 210,
+                "distance_to_ball": 96.29478804649186,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 64
+        }
+    },
+    "match_summary": {
+        "total_frames_processed": 214,
+        "distance_threshold_used": 100,
+        "player_with_most_actions": "1",
+        "most_common_action": "Backhand"
+    }
+}

@@ -1,0 +1,469 @@
+{
+    "player_1": {
+        "action_counts": {
+            "Serve": 148,
+            "Volley": 66
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.18243243243243243,
+            "hit_distribution": {
+                "Serve": 0.6915887850467289,
+                "Volley": 0.308411214953271
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Serve",
+                "start_frame": 0,
+                "distance_to_ball": 204.959194249264,
+                "end_frame": 7
+            },
+            {
+                "action": "Volley",
+                "start_frame": 8,
+                "distance_to_ball": 93.81813761623093,
+                "end_frame": 20
+            },
+            {
+                "action": "Serve",
+                "start_frame": 21,
+                "distance_to_ball": 192.9199556943883,
+                "end_frame": 26
+            },
+            {
+                "action": "Volley",
+                "start_frame": 27,
+                "distance_to_ball": 231.5060250794924
+            },
+            {
+                "action": "Serve",
+                "start_frame": 28,
+                "distance_to_ball": 236.8885325846217,
+                "end_frame": 37
+            },
+            {
+                "action": "Volley",
+                "start_frame": 38,
+                "distance_to_ball": 256.9423198614416
+            },
+            {
+                "action": "Serve",
+                "start_frame": 39,
+                "distance_to_ball": 258.9529902499123
+            },
+            {
+                "action": "Volley",
+                "start_frame": 40,
+                "distance_to_ball": 260.29796958172625
+            },
+            {
+                "action": "Serve",
+                "start_frame": 41,
+                "distance_to_ball": 261.5498599088667,
+                "end_frame": 46
+            },
+            {
+                "action": "Volley",
+                "start_frame": 47,
+                "distance_to_ball": 262.8630340123478
+            },
+            {
+                "action": "Serve",
+                "start_frame": 48,
+                "distance_to_ball": 271.0652746152728,
+                "end_frame": 57
+            },
+            {
+                "action": "Volley",
+                "start_frame": 58,
+                "distance_to_ball": 309.29769960186974,
+                "end_frame": 70
+            },
+            {
+                "action": "Serve",
+                "start_frame": 71,
+                "distance_to_ball": 234.11735032068123,
+                "end_frame": 93
+            },
+            {
+                "action": "Volley",
+                "start_frame": 94,
+                "distance_to_ball": 50.61537752803077
+            },
+            {
+                "action": "Serve",
+                "start_frame": 95,
+                "distance_to_ball": 53.21856928298205
+            },
+            {
+                "action": "Volley",
+                "start_frame": 96,
+                "distance_to_ball": 77.42831811103177
+            },
+            {
+                "action": "Serve",
+                "start_frame": 97,
+                "distance_to_ball": 86.36047464295386,
+                "end_frame": 100
+            },
+            {
+                "action": "Volley",
+                "start_frame": 101,
+                "distance_to_ball": 154.0741365073674,
+                "end_frame": 102
+            },
+            {
+                "action": "Serve",
+                "start_frame": 103,
+                "distance_to_ball": 178.2677795345279,
+                "end_frame": 110
+            },
+            {
+                "action": "Volley",
+                "start_frame": 111,
+                "distance_to_ball": 239.0817288806448
+            },
+            {
+                "action": "Serve",
+                "start_frame": 112,
+                "distance_to_ball": 242.96631296686786,
+                "end_frame": 122
+            },
+            {
+                "action": "Volley",
+                "start_frame": 123,
+                "distance_to_ball": 292.9772033405381,
+                "end_frame": 125
+            },
+            {
+                "action": "Serve",
+                "start_frame": 126,
+                "distance_to_ball": 307.35985797327,
+                "end_frame": 136
+            },
+            {
+                "action": "Volley",
+                "start_frame": 137,
+                "distance_to_ball": 297.66555118892825,
+                "end_frame": 138
+            },
+            {
+                "action": "Serve",
+                "start_frame": 139,
+                "distance_to_ball": 289.7992239570817,
+                "end_frame": 163
+            },
+            {
+                "action": "Volley",
+                "start_frame": 164,
+                "distance_to_ball": 94.4816008096971
+            },
+            {
+                "action": "Serve",
+                "start_frame": 165,
+                "distance_to_ball": 79.73713574645217,
+                "end_frame": 169
+            },
+            {
+                "action": "Volley",
+                "start_frame": 170,
+                "distance_to_ball": 51.077091768398205,
+                "end_frame": 176
+            },
+            {
+                "action": "Serve",
+                "start_frame": 177,
+                "distance_to_ball": 40.08266094222702,
+                "end_frame": 179
+            },
+            {
+                "action": "Volley",
+                "start_frame": 180,
+                "distance_to_ball": 48.920251772784106,
+                "end_frame": 183
+            },
+            {
+                "action": "Serve",
+                "start_frame": 184,
+                "distance_to_ball": 64.16604969434225,
+                "end_frame": 188
+            },
+            {
+                "action": "Volley",
+                "start_frame": 189,
+                "distance_to_ball": 135.2846867478163,
+                "end_frame": 198
+            },
+            {
+                "action": "Serve",
+                "start_frame": 199,
+                "distance_to_ball": 195.0643160662003,
+                "end_frame": 208
+            },
+            {
+                "action": "Volley",
+                "start_frame": 209,
+                "distance_to_ball": 227.6426065604114
+            },
+            {
+                "action": "Serve",
+                "start_frame": 210,
+                "distance_to_ball": 234.10988963788023
+            },
+            {
+                "action": "Volley",
+                "start_frame": 211,
+                "distance_to_ball": 237.40069952052676,
+                "end_frame": 213
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 46
+        }
+    },
+    "player_2": {
+        "action_counts": {
+            "Volley": 142,
+            "Serve": 72
+        },
+        "total_actions": 214,
+        "advanced_analytics": {
+            "serve_accuracy": 0.3055555555555556,
+            "hit_distribution": {
+                "Volley": 0.6635514018691588,
+                "Serve": 0.3364485981308411
+            },
+            "unforced_errors": 0,
+            "total_shots": 214
+        },
+        "action_sequence": [
+            {
+                "action": "Volley",
+                "start_frame": 0,
+                "distance_to_ball": 204.7239421237839,
+                "end_frame": 47
+            },
+            {
+                "action": "Serve",
+                "start_frame": 48,
+                "distance_to_ball": 52.44649101560119,
+                "end_frame": 52
+            },
+            {
+                "action": "Volley",
+                "start_frame": 53,
+                "distance_to_ball": 42.61270075097481,
+                "end_frame": 56
+            },
+            {
+                "action": "Serve",
+                "start_frame": 57,
+                "distance_to_ball": 48.05433709883187,
+                "end_frame": 69
+            },
+            {
+                "action": "Volley",
+                "start_frame": 70,
+                "distance_to_ball": 141.86108260725493,
+                "end_frame": 77
+            },
+            {
+                "action": "Serve",
+                "start_frame": 78,
+                "distance_to_ball": 248.9167224084652,
+                "end_frame": 79
+            },
+            {
+                "action": "Volley",
+                "start_frame": 80,
+                "distance_to_ball": 278.36197393808004,
+                "end_frame": 81
+            },
+            {
+                "action": "Serve",
+                "start_frame": 82,
+                "distance_to_ball": 289.7887637818838,
+                "end_frame": 84
+            },
+            {
+                "action": "Volley",
+                "start_frame": 85,
+                "distance_to_ball": 295.72267295948194
+            },
+            {
+                "action": "Serve",
+                "start_frame": 86,
+                "distance_to_ball": 296.04550220298177,
+                "end_frame": 88
+            },
+            {
+                "action": "Volley",
+                "start_frame": 89,
+                "distance_to_ball": 306.40096779837575,
+                "end_frame": 90
+            },
+            {
+                "action": "Serve",
+                "start_frame": 91,
+                "distance_to_ball": 316.4916595641801,
+                "end_frame": 94
+            },
+            {
+                "action": "Volley",
+                "start_frame": 95,
+                "distance_to_ball": 337.4648611652323,
+                "end_frame": 107
+            },
+            {
+                "action": "Serve",
+                "start_frame": 108,
+                "distance_to_ball": 178.0422160530022,
+                "end_frame": 111
+            },
+            {
+                "action": "Volley",
+                "start_frame": 112,
+                "distance_to_ball": 153.659765552462
+            },
+            {
+                "action": "Serve",
+                "start_frame": 113,
+                "distance_to_ball": 148.83565728759012
+            },
+            {
+                "action": "Volley",
+                "start_frame": 114,
+                "distance_to_ball": 142.314556900167
+            },
+            {
+                "action": "Serve",
+                "start_frame": 115,
+                "distance_to_ball": 138.43039722052956
+            },
+            {
+                "action": "Volley",
+                "start_frame": 116,
+                "distance_to_ball": 132.14874702836156
+            },
+            {
+                "action": "Serve",
+                "start_frame": 117,
+                "distance_to_ball": 124.50866422932619,
+                "end_frame": 125
+            },
+            {
+                "action": "Volley",
+                "start_frame": 126,
+                "distance_to_ball": 64.61174520315481,
+                "end_frame": 136
+            },
+            {
+                "action": "Serve",
+                "start_frame": 137,
+                "distance_to_ball": 41.066639917688335
+            },
+            {
+                "action": "Volley",
+                "start_frame": 138,
+                "distance_to_ball": 53.94886455143271,
+                "end_frame": 141
+            },
+            {
+                "action": "Serve",
+                "start_frame": 142,
+                "distance_to_ball": 89.74248873314743,
+                "end_frame": 143
+            },
+            {
+                "action": "Volley",
+                "start_frame": 144,
+                "distance_to_ball": 111.4200507346033,
+                "end_frame": 157
+            },
+            {
+                "action": "Serve",
+                "start_frame": 158,
+                "distance_to_ball": 219.4858530868598,
+                "end_frame": 161
+            },
+            {
+                "action": "Volley",
+                "start_frame": 162,
+                "distance_to_ball": 257.086993807416,
+                "end_frame": 165
+            },
+            {
+                "action": "Serve",
+                "start_frame": 166,
+                "distance_to_ball": 296.7160707180424,
+                "end_frame": 168
+            },
+            {
+                "action": "Volley",
+                "start_frame": 169,
+                "distance_to_ball": 316.22918444162246,
+                "end_frame": 182
+            },
+            {
+                "action": "Serve",
+                "start_frame": 183,
+                "distance_to_ball": 346.22061534541126,
+                "end_frame": 185
+            },
+            {
+                "action": "Volley",
+                "start_frame": 186,
+                "distance_to_ball": 286.55923021506726,
+                "end_frame": 192
+            },
+            {
+                "action": "Serve",
+                "start_frame": 193,
+                "distance_to_ball": 221.54959569959126,
+                "end_frame": 198
+            },
+            {
+                "action": "Volley",
+                "start_frame": 199,
+                "distance_to_ball": 179.05622201169987,
+                "end_frame": 202
+            },
+            {
+                "action": "Serve",
+                "start_frame": 203,
+                "distance_to_ball": 149.91980357753198,
+                "end_frame": 209
+            },
+            {
+                "action": "Volley",
+                "start_frame": 210,
+                "distance_to_ball": 96.29478804649186,
+                "end_frame": 211
+            },
+            {
+                "action": "Serve",
+                "start_frame": 212,
+                "distance_to_ball": 84.57145923390313
+            },
+            {
+                "action": "Volley",
+                "start_frame": 213,
+                "distance_to_ball": 77.56378697467579
+            }
+        ],
+        "detailed_stats": {
+            "total_frames": 214,
+            "active_frames": 64
+        }
+    },
+    "match_summary": {
+        "total_frames_processed": 214,
+        "distance_threshold_used": 100,
+        "player_with_most_actions": "1",
+        "most_common_action": "Serve"
+    }
+}
