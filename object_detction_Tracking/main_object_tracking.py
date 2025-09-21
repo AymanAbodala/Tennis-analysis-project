@@ -13,8 +13,8 @@ def main_object_tracking(input_video_path=None):
     video_frames = read_video(input_video_path)
 
     # detect players and Ball
-    player_tracker = PlayerTracker(model_path=r"D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\models\yolov8x.pt")
-    ball_tracker = BallTracker(model_path=r"D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\models\yolo11best.pt")
+    player_tracker = PlayerTracker(model_path=r"yolov8x.pt")
+    ball_tracker = BallTracker(model_path=r"yolo11best.pt")
 
     player_detections = player_tracker.detect_frames(video_frames)
     ball_detections = ball_tracker.detect_frames(video_frames)
@@ -22,7 +22,7 @@ def main_object_tracking(input_video_path=None):
     ball_detections = ball_tracker.interpolate_ball_positions(ball_detections)
 
     # Court Line Detector model
-    court_model_path = r"D:\studying\NTI training\Tennis-analysis-project\object_detction_Tracking\models\keypoints_model.pth"
+    court_model_path = r"keypoints_model.pth"
     court_line_detector = CourtPointsDetector(court_model_path)
     court_keypoints = court_line_detector.predict(video_frames[0])
 
@@ -40,13 +40,13 @@ def main_object_tracking(input_video_path=None):
     for i, frame in enumerate(output_video_frames):
         cv2.putText(frame, f"Frame: {i}", (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-    video_path = f"D:\\studying\\NTI training\\Tennis-analysis-project\\object_detction_Tracking\\output_video\\output_video{np.random.randint(0,1000)}.avi"
+    video_path = f"D:\\NTI IB\\Tennis-analysis-project\\output_files\\output_video{np.random.randint(0,1000)}.avi"
     save_video(output_video_frames,video_path)
 
     results = {"player_detections": player_detections,
             "ball_detections": ball_detections
             }
-    json_path = f"D:\\studying\\NTI training\\Tennis-analysis-project\\output_files\\{np.random.randint(0,1000)}.json"
+    json_path = f"D:\\NTI IB\\Tennis-analysis-project\\output_files\\{np.random.randint(0,1000)}.json"
     with open(json_path, "w") as f:
         json.dump(results,f)
 

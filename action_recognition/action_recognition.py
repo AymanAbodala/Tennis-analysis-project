@@ -354,7 +354,7 @@ class TennisPipeline:
 # ---------------- Run Example ---------------- #
 
 def run_pipeline(video_path, detection_json, 
-                 output_json=f"D:\\studying\\NTI training\\Tennis-analysis-project\\output_files\\tennis_actions{datetime.now().strftime('%Y%m%d%H%M%S')}.json",
+                 output_json=f"D:\\NTI IB\\Tennis-analysis-project\\output_files\\tennis_actions{datetime.now().strftime('%Y%m%d%H%M%S')}.json",
                    distance_threshold=100):
     """
     Run the Tennis Action Recognition Pipeline with provided paths and parameters.
