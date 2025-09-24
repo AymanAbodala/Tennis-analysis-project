@@ -18,20 +18,35 @@ Those JSON files can be sent to a **FastAPI** service to generate recommendation
 
 ## 🗂 Repository Structure
 object_detection_Tracking/
+
 ├─ analysis/
+
 │ ├─ init.py
+
 │ ├─ action_recognition.py # Action/stroke recognition logic
+
 ├─ court_points_detector/
+
 │ ├─ pycache/
+
 │ ├─ init.py
+
 │ ├─ court_points_detector.py # Detect court lines/points & compute homography
+
 ├─ output_video/
+
 │ ├─ results.json # Example pipeline output
+
 │ ├─ tennis_actions2.json # Example action recognition output
+
 ├─ trackers/ # Tracking logic (DeepSort/Kalman etc.)
+
 ├─ training/ # Training scripts for detectors or action models
+
 ├─ utils/ # Utility functions (video IO, drawing, helpers)
+
 ├─ main_object_tracking.py # Entry point to run detection+tracking pipeline
+
 .gitignore # Ignored files (models, venv etc.)
 
 yaml
